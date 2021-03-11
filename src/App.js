@@ -12,6 +12,9 @@ const booksData = [
 ];
 
 function App() {
+  fetch('https://tranquil-sea-17355.herokuapp.com/')
+    .then(x => x.json())
+    .then(x => console.log(x));
   return (
     <div className="site-wrapper">
       <img src={logo} className="logo" alt="logo" />
