@@ -33,7 +33,6 @@ class BookList extends Component {
                                     this.bookClicked.bind(this, x.title)()
                                     this.changeIsSelected.bind(this, y)()
                                     x.title = 'Pehso'
-                                    console.log(y)
                                 }} />
                             </li>
                         )
