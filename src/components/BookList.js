@@ -13,7 +13,6 @@ class BookList extends Component {
         if (!compId[id]) compId[id] = { isSelected: false }
         compId[id].isSelected ? compId[id].isSelected = false : compId[id].isSelected = true;
         this.setState({ compId })
-        console.log(this.state)
     }
     render() {
         let idComp = 0
