@@ -5,7 +5,6 @@ const Book = (x) => {
     const selectedObj = Object.assign({},x.stateComp) 
     const selectObj = Object.assign({}, selectedObj[x.id])
     const select = selectObj.isSelected
-    console.log(select)
     return (
         <article className={select||x.isSelected ? 'selected-book' : ''} onClick={()=>x.clickHandler(x.id)}>
             <h3 className='book-article' onClick={() => console.log(`${x.title} is clicked!`)}>
