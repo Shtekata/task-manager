@@ -16,7 +16,6 @@ class Counter extends Component {
 
     // resetCount = () => this.setState({ count: 0 })
     resetCount = (x) => {
-        console.log(x)
         this.setState({ count: 0 })
         setTimeout(() => console.log(x), 1000)
     }

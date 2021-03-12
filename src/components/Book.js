@@ -1,5 +1,4 @@
 const Book = (x) => {
-    console.log(x)
     // if (!x.title) return <h3>No information provided</h3>
     const author = x.author || <strong>Pesho</strong>;
     const Author = () => x.author || <strong>Pesho</strong>;
