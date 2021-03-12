@@ -1,6 +1,7 @@
 import { testService } from '../services/testService';
 
-const message = testService.testMessage.then(x => x);
+let message;
+testService.testMessage.then(x => message = x);
 console.log(message);
 const Heading = (x) => (
     <header>
