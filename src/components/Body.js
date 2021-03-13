@@ -14,9 +14,10 @@ class Body extends Component{
     componentDidMount() {
         testService.testMessage.then(x => this.setState({ message: x.message }));
         testService.createEntity({
+            creator: '604cb9012d8b9e1d8ca8bdac',
             title: 'Pesho',
-            description: 'GoshoGoshoGosho',
-            solution: 'GeshoGeshoGesho',
+            description: 'GoGoGoGoGo',
+            solution: 'GeGeGeGeGe',
             isPublic: 'on'
         });
         // testService.register({ username: 'Shtekata', email: 'gesheval@gmail.com', password: '7u87u8', rePassword: '7u87u8' });
