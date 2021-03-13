@@ -13,14 +13,14 @@ class Body extends Component{
     
     componentDidMount() {
         testService.testMessage.then(x => this.setState({ message: x.message }));
-        // testService.createEntity({
-        //     title: 'Pesho',
-        //     description: 'Gosho',
-        //     solution: 'Gesho',
-        //     isPublic: 'on'
-        // });
+        testService.createEntity({
+            title: 'Pesho',
+            description: 'Gosho',
+            solution: 'Gesho',
+            isPublic: 'on'
+        });
         // testService.register({ username: 'Shtekata', email: 'gesheval@gmail.com', password: '7u87u8', rePassword: '7u87u8' });
-        testService.login({ username: 'Shtekata', password: '7u87u8' });
+        // testService.login({ username: 'Shtekata', password: '7u87u8' });
     }
 
     render() {
