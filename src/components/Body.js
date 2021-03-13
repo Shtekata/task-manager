@@ -15,7 +15,7 @@ class Body extends Component{
         testService.testMessage.then(x => this.setState({ message: x.message }));
         testService.createEntity({
             creator: '604cb9012d8b9e1d8ca8bdac',
-            title: 'Pesho-Mesho-Desho',
+            title: 'Pesho-Mesho-Desho-Fresho',
             description: 'GoGoGoGoGo',
             solution: 'GeGeGeGeGe',
             isPublic: 'on'
