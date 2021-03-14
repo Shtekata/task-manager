@@ -27,7 +27,8 @@ const createEntity = (x) => fetch('http://localhost:443/api/tasks/', {
     body: JSON.stringify(x)
 }).then(x => x.json());
 
-const getEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
+// const getEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
+const getEntity = (x) => fetch(`https://tranquil-sea-17355.herokuapp.com/api/tasks/${x._id}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 }).then(x => x.json());
@@ -38,15 +39,10 @@ const editEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
     body: JSON.stringify(x)
 }).then(x => x.json());
 
-
 const deleteEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 }).then(x => x.json());
-
-
-
-
 
 export const testService = {
     testMessage,
