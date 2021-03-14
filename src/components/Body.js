@@ -18,21 +18,22 @@ class Body extends Component{
         // testService.login({ username: 'ShtekataEkataGek', password: '7u87u8' });
         // testService.logout();
 
-        testService.createEntity({
-            title: 'Pesho-Mesho-Desho-Fresho',
-            description: 'GoGoGoGoGo',
-            solution: 'GeGeGeGeGe',
-            isPublic: 'on'
-        }).then(x => {
-            if (x.hasOwnProperty('err')) {
-                const err = new Error();
-                Object.assign(err, x.err);
-                // throw err;
-                console.log(err);
-            }
-        })
-        // testService.editEntity({ _id: '604e7c75900b4c2958d7badf', description: 'AAAAAAAAAAAAA', solution: 'BBBBBBBBBBBBBB' });
-        // testService.deleteEntity({ _id: '604e7c75900b4c2958d7badf' });
+        // testService.createEntity({
+        //     title: 'Pesho-Mesho-Desho-Fresho',
+        //     description: 'GoGoGoGoGo',
+        //     solution: 'GeGeGeGeGe',
+        //     isPublic: 'on'
+        // }).then(x => {
+        //     if (x.hasOwnProperty('err')) {
+        //         const err = new Error();
+        //         Object.assign(err, x.err);
+        //         // throw err;
+        //         console.log(err);
+        //     }
+        // })
+        testService.getEntity({ _id: '604e7e9ef743eb33505b2410' });
+        // testService.editEntity({ _id: '604e7e9ef743eb33505b2410', description: 'AAAAAAAAAAAAA', solution: 'BBBBBBBBBBBBBB' });
+        // testService.deleteEntity({ _id: '604e7e9ef743eb33505b2410' });
         
         console.log('Token: ' + localStorage.getItem('token'));
     }

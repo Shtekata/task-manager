@@ -15,15 +15,20 @@ const login = (x) => fetch('http://localhost:443/api/auth/login/', {
     body: JSON.stringify(x)
 }).then(x => x.json()).then(x => localStorage.setItem('token', x.token));
 
-// const createEntity = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/tasks/create', {
-const createEntity = (x) => fetch('http://localhost:443/api/tasks/create/', {
+const logout = (x) => fetch(`http://localhost:443/api/auth/logout`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+}).then(x => x.json());
+
+// const createEntity = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/tasks/', {
+const createEntity = (x) => fetch('http://localhost:443/api/tasks/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     body: JSON.stringify(x)
 }).then(x => x.json());
 
-const deleteEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
-    method: 'DELETE',
+const getEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
+    method: 'GET',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 }).then(x => x.json());
 
@@ -33,10 +38,15 @@ const editEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
     body: JSON.stringify(x)
 }).then(x => x.json());
 
-const logout = (x) => fetch(`http://localhost:443/api/auth/logout`, {
-    method: 'GET',
+
+const deleteEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
+    method: 'DELETE',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 }).then(x => x.json());
+
+
+
+
 
 export const testService = {
     testMessage,
@@ -44,6 +54,7 @@ export const testService = {
     login,
     logout,
     createEntity,
+    getEntity,
     editEntity,
     deleteEntity
 }
