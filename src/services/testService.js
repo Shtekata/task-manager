@@ -11,20 +11,39 @@ const register = (x) => fetch('http://localhost:443/api/auth/register/', {
 // const login = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/auth/login/', {
 const login = (x) => fetch('http://localhost:443/api/auth/login/', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(x)
 }).then(x => x.json()).then(x => localStorage.setItem('token', x.token));
 
-// const createEntity = (x) => fetch('http://localhost:443/api/tasks/create/', {
-const createEntity = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/tasks/create', {
+// const createEntity = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/tasks/create', {
+const createEntity = (x) => fetch('http://localhost:443/api/tasks/create/', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     body: JSON.stringify(x)
-});
+}).then(x => x.json());
+
+const deleteEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+}).then(x => x.json());
+
+const editEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+    body: JSON.stringify(x)
+}).then(x => x.json());
+
+const logout = (x) => fetch(`http://localhost:443/api/auth/logout`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+}).then(x => x.json());
 
 export const testService = {
     testMessage,
     register,
     login,
-    createEntity
+    logout,
+    createEntity,
+    editEntity,
+    deleteEntity
 }

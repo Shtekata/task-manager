@@ -13,15 +13,27 @@ class Body extends Component{
     
     componentDidMount() {
         testService.testMessage.then(x => this.setState({ message: x.message }));
-        // testService.createEntity({
-        //     creator: '604cb9012d8b9e1d8ca8bdac',
-        //     title: 'Pesho-Mesho-Desho-Fresho',
-        //     description: 'GoGoGoGoGo',
-        //     solution: 'GeGeGeGeGe',
-        //     isPublic: 'on'
-        // });
+        
         // testService.register({ username: 'ShtekataEkataGek', email: 'gesheval-eshaval-gek@gmail.com', password: '7u87u8', rePassword: '7u87u8' });
-        testService.login({ username: 'Shtekata', password: '7u87u8' });
+        // testService.login({ username: 'ShtekataEkataGek', password: '7u87u8' });
+        // testService.logout();
+
+        testService.createEntity({
+            title: 'Pesho-Mesho-Desho-Fresho',
+            description: 'GoGoGoGoGo',
+            solution: 'GeGeGeGeGe',
+            isPublic: 'on'
+        }).then(x => {
+            if (x.hasOwnProperty('err')) {
+                const err = new Error();
+                Object.assign(err, x.err);
+                // throw err;
+                console.log(err);
+            }
+        })
+        // testService.editEntity({ _id: '604e7c75900b4c2958d7badf', description: 'AAAAAAAAAAAAA', solution: 'BBBBBBBBBBBBBB' });
+        // testService.deleteEntity({ _id: '604e7c75900b4c2958d7badf' });
+        
         console.log('Token: ' + localStorage.getItem('token'));
     }
 
