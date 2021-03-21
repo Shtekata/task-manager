@@ -8,8 +8,8 @@ const register = (x) => fetch('http://localhost:443/api/auth/register/', {
     body: JSON.stringify(x)
 });
 
-// const login = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/auth/login/', {
-const login = (x) => fetch('http://localhost:443/api/auth/login/', {
+const login = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/auth/login/', {
+// const login = (x) => fetch('http://localhost:443/api/auth/login/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(x)
@@ -20,11 +20,17 @@ const logout = (x) => fetch(`http://localhost:443/api/auth/logout`, {
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 }).then(x => x.json());
 
-// const createEntity = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/tasks/', {
-const createEntity = (x) => fetch('http://localhost:443/api/tasks/', {
+// const createEntity = (x) => fetch('http://localhost:443/api/tasks/', {
+const createEntity = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/tasks/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     body: JSON.stringify(x)
+}).then(x => x.json());
+
+// const getEntities = (x) => fetch(`http://localhost:443/api/tasks/`, {
+const getEntities = () => fetch(`https://tranquil-sea-17355.herokuapp.com/api/tasks/`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 }).then(x => x.json());
 
 // const getEntity = (x) => fetch(`http://localhost:443/api/tasks/${x._id}`, {
@@ -49,8 +55,9 @@ export const testService = {
     register,
     login,
     logout,
-    createEntity,
+    getEntities,
     getEntity,
+    createEntity,
     editEntity,
     deleteEntity
 }
