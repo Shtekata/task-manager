@@ -4,7 +4,7 @@ const TaskList = ({ tasks }) => (
     <div className='task-list'>
         <h1>Some Tasks</h1>
         <div>
-            {tasks.map(x => <Task key={x.id} task={x} />)}
+            {tasks.map(x => <Task key={x._id} task={x} />)}
         </div>
         <style jsx>{`
         h1{

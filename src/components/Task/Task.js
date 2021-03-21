@@ -1,6 +1,7 @@
 const Task = ({ task: x }) => (
     <div className='task'>
         <img className='task-img' src="blue-origami-bird.png" alt="Origami" />
+        <h2 className='task-title'>{ x.title }</h2>
         <p className='description'>{x.description}</p>
         <div className='task-div'>
             <small>Author: </small> {x.creator.username}
@@ -21,6 +22,11 @@ const Task = ({ task: x }) => (
                 text-decoration: underline;
                 padding-right: 1%;
                 margin-bottom: 0.5%;
+            }
+            .task-title{
+                display: inline-block;
+                text-align: center;
+                width: 90%;
             }
             .description {
                 word-wrap: break-word;

@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 
 
 const Aside = ({ onAsideItemClick }) => {
-    
     return (
         <aside className='aside'>
             <NavLink to='/aside/1' className='aside-item' onClick={() => onAsideItemClick(1)}>Going to 1</NavLink>

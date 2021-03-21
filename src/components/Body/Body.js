@@ -45,9 +45,10 @@ class Body extends Component{
     };
 
     getPosts() {
-        if (!this.state.selectedTask) return this.state.tasks;
-        return this.state.tasks.find(x => x.id == this.state.selectedTask) != undefined
-            ? [this.state.tasks.find(x => x.id == this.state.selectedTask)] : this.state.tasks;
+        const task = this.state.selectedTask;
+        if (!task) return this.state.tasks;
+        console.log(this.state.tasks.slice(task, task + 1));
+        return this.state.tasks.slice(task, task + 1);
     };
 
     render() {
