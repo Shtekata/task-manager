@@ -27,8 +27,8 @@ const createEntity = (x) => fetch('https://tranquil-sea-17355.herokuapp.com/api/
     body: JSON.stringify(x)
 }).then(x => x.json());
 
-// const getEntities = (x) => fetch(`http://localhost:443/api/tasks/`, {
-const getEntities = () => fetch(`https://tranquil-sea-17355.herokuapp.com/api/tasks/`, {
+const getEntities = (x) => fetch(`http://localhost:443/api/tasks/`, {
+// // const getEntities = () => fetch(`https://tranquil-sea-17355.herokuapp.com/api/tasks/`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 }).then(x => x.json());
