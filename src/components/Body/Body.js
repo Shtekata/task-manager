@@ -61,9 +61,9 @@ class Body extends Component{
                         </Route>
                         <Route path='/about' component={About} />
                         <Route path='/contact-us' component={ContactUs} />
-                        <Route path='/contact-us-custom' render={(props) => <h1>Contact Us Custom Page</h1>} />
+                        <Route path='/contact-us-custom' render={(props) => <h1 {...props}>Contact Us Custom Page</h1>} />
                         <Route path='/aside/:id'><TaskList tasks={this.getPosts()} /></Route>
-                        <Route render={() => <h1>Error Page =&gt; :)</h1>} />
+                        <Route render={({ match, locaton, history }) => <h1>Error Page =&gt; :)</h1>} />
                     </Switch>
                 </main>
                 <style jsx>{`
