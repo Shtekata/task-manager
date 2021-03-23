@@ -9,10 +9,11 @@ function App() {
       <Body />
       <Footer />
       <style jsx>{`
-        .app{
+        .site-wrapper{
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          text-align: center;
+          min-height: 100vh;
         }
         `}</style>
     </div>

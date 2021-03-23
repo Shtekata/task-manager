@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Aside = ({ onAsideItemClick }) => {
     return (
         <aside className='aside'>
+            <NavLink to='/aside/all' className='aside-item' onClick={() => onAsideItemClick()}>Going to All</NavLink>
             <NavLink to='/aside/1' className='aside-item' onClick={() => onAsideItemClick(1)}>Going to 1</NavLink>
             <NavLink to='/aside/2' className='aside-item' onClick={() => onAsideItemClick(2)}>Going to 2</NavLink>
             <NavLink to='/aside/3' className='aside-item' onClick={() => onAsideItemClick(3)}>Going to 3</NavLink>
@@ -13,7 +14,6 @@ const Aside = ({ onAsideItemClick }) => {
             <NavLink to='/aside/7' className='aside-item' onClick={() => onAsideItemClick(7)}>Going to 7</NavLink>
             <NavLink to='/aside/8' className='aside-item' onClick={() => onAsideItemClick(8)}>Going to 8</NavLink>
             <NavLink to='/aside/9' className='aside-item' onClick={() => onAsideItemClick(9)}>Going to 9</NavLink>
-            <NavLink to='/aside/10' className='aside-item' onClick={() => onAsideItemClick(10)}>Going to 10</NavLink>
             <style jsx>{`
             .aside{
                 display: flex;

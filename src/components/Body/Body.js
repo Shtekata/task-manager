@@ -5,6 +5,7 @@ import Aside from '../Aside';
 import TaskList from '../TaskList';
 import About from '../About';
 import ContactUs from '../ContactUs';
+import KanbanBoard from '../Kanban-board/Kanban-board';
 
 class Body extends Component{
     constructor(props) { super(props); this.state = {  tasks: [], selectedTask: null } }
@@ -41,6 +42,7 @@ class Body extends Component{
     }
 
     onAsideItemClickApp(id) {
+        if (!id) this.setState(() => ({ selectedTask: null }));
         this.setState(() => ({ selectedTask: id }));
     };
 
@@ -57,8 +59,9 @@ class Body extends Component{
                 <main className='main'>
                     <Switch>
                         <Route path='/' exact>
-                            <TaskList tasks={this.state.tasks} />
+                            <KanbanBoard/>
                         </Route>
+                        <Route path='/tasks-test'><TaskList tasks={this.state.tasks} /></Route>
                         <Route path='/about' component={About} />
                         <Route path='/contact-us' component={ContactUs} />
                         <Route path='/contact-us-custom' render={(props) => <h1 {...props}>Contact Us Custom Page</h1>} />
