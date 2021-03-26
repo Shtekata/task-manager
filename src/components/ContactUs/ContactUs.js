@@ -1,7 +1,16 @@
 const ContactUs = () => (
     <div className='contact-us'>
-        <h1>Contact Us Page</h1>
-           <style jsx>{`
+        <div>
+            <h1>Contact Us Page</h1>
+            <div>
+                <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
+                <form>
+                    {console.log(process.env)}
+                    <input defaultValue={process.env.REACT_APP_NOT_SECRET_CODE} />
+                </form>
+            </div>
+        </div>
+        <style jsx>{`
         h1{
             text-align: center;
             color: #234465;
