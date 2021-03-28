@@ -12,7 +12,6 @@ const KanbanBoard = () => (
         .kanban-board{
             color: white;
             background-color: thistle;
-            min-height: 100vh;
             font-size: calc(10px + 2vmin);
         }
         `}</style>

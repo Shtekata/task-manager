@@ -80,11 +80,11 @@ class Body extends Component{
                 <style jsx>{`
                     .container{
                       display: flex;
-                      justify-content: space-around;
+                      justify-content: space-between;
+                      min-height: 78.63vh;
                     }
                     .main{
-                        flex-basis: 83%;
-                        height: auto;
+                        flex-grow: 1;
                     }
                 `}</style>
             </div>

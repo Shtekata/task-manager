@@ -67,7 +67,6 @@ const DragNDrop = ({ data }) => {
             padding: .5rem;
             display: grid;
             gap: .5rem;
-            width: 100%;
             height: 100%;
             align-items: start;
             grid-template-columns: repeat(auto-fill, 300px);

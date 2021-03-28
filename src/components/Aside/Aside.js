@@ -10,15 +10,12 @@ const Aside = ({ onAsideItemClick }) => {
             <NavLink to='/aside/3' className='aside-item' onClick={() => onAsideItemClick(3)}>Going to 3</NavLink>
             <NavLink to='/aside/4' className='aside-item' onClick={() => onAsideItemClick(4)}>Going to 4</NavLink>
             <NavLink to='/aside/5' className='aside-item' onClick={() => onAsideItemClick(5)}>Going to 5</NavLink>
-            <NavLink to='/aside/6' className='aside-item' onClick={() => onAsideItemClick(6)}>Going to 6</NavLink>
-            <NavLink to='/aside/7' className='aside-item' onClick={() => onAsideItemClick(7)}>Going to 7</NavLink>
-            <NavLink to='/aside/8' className='aside-item' onClick={() => onAsideItemClick(8)}>Going to 8</NavLink>
-            <NavLink to='/aside/9' className='aside-item' onClick={() => onAsideItemClick(9)}>Going to 9</NavLink>
             <style jsx>{`
             .aside{
                 display: flex;
                 flex-direction: column;
                 justify-content: space-evenly;
+                margin: 1rem;
             }
             .aside-item{
                 flex-basis: 40px;

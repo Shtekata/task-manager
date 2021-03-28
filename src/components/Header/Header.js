@@ -20,21 +20,25 @@ const Header = ({ user, logoutHandler }) => (
     <style jsx>{`
   .navigation {
       width: 100%;
-      height: 70px;
+      min-height: 75px;
       background-color: #4b61a1;
       border-bottom: 2px solid #e29510;
       border-top: 2px solid #ffa000;
+      display: flex;
+      align-items: center;
   }
   .div{
       display: flex;
       justify-content: space-around;
       align-items: center;
       height: 100%;
+      flex-grow: 1;
   }
   .header-item {
     color: white;
     text-align: center;
     text-decoration: none;
+    outline: none;
   }
   .header-item > img {
     width: 100%;
@@ -47,7 +51,7 @@ const Header = ({ user, logoutHandler }) => (
     border-top: 2px solid #ffa000;
     flex-basis: 6%;
   }
-  .header-item:hover {
+  .header-item:not(:first-child):hover {
     cursor: pointer;
     border-top: none;
     border-bottom: 2px solid #ffa000;

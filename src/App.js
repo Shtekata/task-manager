@@ -25,7 +25,7 @@ function App() {
           display: flex;
           flex-direction: column;
           text-align: center;
-          min-height: 100vh;
+          min-height: 97vh;
         }
         `}</style>
     </div>
