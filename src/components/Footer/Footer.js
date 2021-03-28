@@ -12,7 +12,7 @@ const Footer = () => (
             <Link to='/about' className='footer-item'>About</Link>
             <Link to='/' className='footer-item'><img src="/caveman.png" alt="caveman" /></Link>
         </div>
-        <p>Software University &copy; <span className='ala-bala'>2021</span></p>
+        <p>Gehslandia &copy; <span className='ala-bala'>2021</span></p>
         <style jsx>{`
 .footer {
     width: 100%;
@@ -39,6 +39,7 @@ const Footer = () => (
 .footer-item {
     color: #234465;
     text-align: center;
+    text-decoration: none;
   }
   .footer-item > img {
     width: 100%;

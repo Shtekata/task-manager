@@ -17,8 +17,8 @@ function App() {
 
   return (
     <div className="site-wrapper">
-      <Header user={user}/>
-      <Body loginHandler={loginHandler} logoutHandler={logoutHandler} />
+      <Header user={user} logoutHandler={logoutHandler} />
+      <Body loginHandler={loginHandler} />
       <Footer />
       <style jsx>{`
         .site-wrapper{

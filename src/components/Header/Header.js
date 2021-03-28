@@ -2,17 +2,17 @@ import { Link } from 'react-router-dom';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
 
-const Header = ({ user }) => (
+const Header = ({ user, logoutHandler }) => (
   <nav className='navigation'>
     <div className='div'>
       <Link to='/' className='header-item'><img src="/bird.png" alt="bird" /></Link>
       <Link to='/' className='header-item'>Home</Link>
       <Link to='/tasks-test' className='header-item'>Tasks Test</Link>
       <Link to='/contact-us' className='header-item'>Contact Us</Link>
-      <Link to='/contact-us-custom' className='header-item'>Con Us Cus</Link>
       <Link to='/about' className='header-item'>About</Link>
+      <Link to='/music' className='header-item'>Music</Link>
       {user
-        ? <NavLogout user={user} />
+        ? <NavLogout user={user} logoutHandler={logoutHandler} />
         : <NavLogin />
       }
     </div>
@@ -33,6 +33,7 @@ const Header = ({ user }) => (
   .header-item {
     color: white;
     text-align: center;
+    text-decoration: none;
   }
   .header-item > img {
     width: 100%;

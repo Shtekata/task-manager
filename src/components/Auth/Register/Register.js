@@ -1,28 +1,46 @@
 import * as authService from '../../../services/authService';
 import { useHistory } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Message from '../../Errors/Message';
 
-const Login = ({loginHandler}) => {
+const Register = ({ loginHandler }) => {
     const history = useHistory();
-    const form = useRef(null);
-
-    useEffect(() => form.current.reset(), []);
+    const [msg, setMsg] = useState('');
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        authService.login({ username: e.target.username.value, password: e.target.password.value })
-            .then(x => { loginHandler(x); history.push('/') });
+        if (e.target.password.value !== e.target.rePassword.value) {
+            e.target.password.value = '';
+            e.target.rePassword.value = ''
+            setMsg('Password and Repeat Password are different!');
+            setTimeout(() => setMsg(''), 1500);
+        };
+        authService.register({
+            username: e.target.username.value,
+            email: e.target.email.value,
+            password: e.target.password.value,
+            rePassword: e.target.rePassword.value
+        })
+        .then(x => { loginHandler(x); history.push('/') });
     };
 
     return (
-        <section className="login">
-            <form onSubmit={onSubmitHandler} ref={form}>
+        <section class="register">
+            <form onSubmit={onSubmitHandler}>
                 <fieldset>
-                    <legend>Login</legend>
+                    <legend>Register</legend>
                     <p className="field">
                         <label htmlFor="username">Username</label>
                         <span className="input">
                             <input type="text" name="username" id="username" placeholder="Username" />
+                            <span className="actions"></span>
+                            <i className="fas fa-user"></i>
+                        </span>
+                    </p>
+                    <p className="field">
+                        <label htmlFor="email">Email</label>
+                        <span className="input">
+                            <input type="text" name="email" id="email" placeholder="Email" />
                             <span className="actions"></span>
                             <i className="fas fa-user"></i>
                         </span>
@@ -35,7 +53,16 @@ const Login = ({loginHandler}) => {
                             <i className="fas fa-key"></i>
                         </span>
                     </p>
-                    <input className="button submit" type="submit" value="Login" />
+                    <p className="field">
+                        <label htmlFor="rePassword">Repeat Password</label>
+                        <span className="input">
+                            <input type="password" name="rePassword" id="rePassword" placeholder="Repeat password" />
+                            <span className="actions"></span>
+                            <i className="fas fa-key"></i>
+                        </span>
+                    </p>
+                    <Message msg={msg} />
+                    <input className="button submit" type="submit" value="Register" />
                 </fieldset>
             </form>
             <style jsx>{`
@@ -132,4 +159,4 @@ const Login = ({loginHandler}) => {
         </section>
     )
 };
-export default Login;
+export default Register;

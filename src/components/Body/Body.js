@@ -7,6 +7,7 @@ import About from '../About';
 import ContactUs from '../ContactUs';
 import KanbanBoard from '../Kanban-board/Kanban-board';
 import Auth from '../Auth';
+import Music from '../Music';
 
 class Body extends Component{
     constructor(props) {
@@ -70,10 +71,10 @@ class Body extends Component{
                         </Route>
                         <Route path='/tasks-test'><TaskList tasks={this.state.tasks} /></Route>
                         <Route path='/about' component={About} />
+                        <Route path='/music' component={Music} />
                         <Route path='/contact-us' component={ContactUs} />
-                        <Route path='/contact-us-custom' render={(props) => <h1 {...props}>Contact Us Custom Page</h1>} />
                         <Route path='/aside/:id'><TaskList tasks={this.getPosts()} /></Route>
-                        <Route render={({ match, locaton, history }) => <h1>Error Page =&gt; :)</h1>} />
+                        <Route render={(props) => <h1 {...props}>Error Page =&gt; :)</h1>} />
                     </Switch>
                 </main>
                 <style jsx>{`

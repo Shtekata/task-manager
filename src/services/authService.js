@@ -4,7 +4,10 @@ const register = (x) => fetch(`${REACT_APP_API_URL}/auth/register/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(x)
-});
+})
+    .then(x => x.json())
+    .then(x => { localStorage.setItem('token', x.token); localStorage.setItem('username', x.username); return x })
+    .catch(x => console.log(x));
 
 const login = (x) => fetch(`${REACT_APP_API_URL}/auth/login/`, {
     method: 'POST',
@@ -20,7 +23,7 @@ const logout = (x) => fetch(`${REACT_APP_API_URL}/auth/logout`, {
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
 })
     .then(x => x.json())
-    .then(x => { localStorage.removeItem('username'); return x })
+    .then(x => { localStorage.removeItem('username'); localStorage.removeItem('token'); return x })
     .catch(x => console.log(`Error: ${x}`));
 
 export {
