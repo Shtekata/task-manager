@@ -1,22 +1,49 @@
 import * as authService from '../../../services/authService';
 import { useHistory } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useState } from 'react';
+import Message from '../../Errors/Message';
+import Notification from '../../Shared/Notification';
 
-const Login = ({loginHandler}) => {
+const Login = ({ loginHandler }) => {
     const history = useHistory();
-    const form = useRef(null);
-
-    useEffect(() => form.current.reset(), []);
+    const [msg, setMsg] = useState('');
+    const [type, setType] = useState('');
+    const [usernameMsg, setUsernameMsg] = useState('');
+    const [userPassMsg, setUserPassMsg] = useState('');
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        authService.login({ username: e.target.username.value, password: e.target.password.value })
-            .then(x => { loginHandler(x); history.push('/') });
+        let pass = true;
+        if (e.target.username.value.length < 5) {
+            pass = false;
+            setUsernameMsg('Username should be at least 5 characters');
+            setTimeout(() => setUsernameMsg(''), 1500);
+        }
+        if (e.target.password.value.length < 5) {
+            pass = false;
+            setUserPassMsg('Password should be at least 5 characters');
+            setTimeout(() => setUserPassMsg(''), 1500);
+        }
+        if (pass) {
+            authService.login({ username: e.target.username.value, password: e.target.password.value })
+                .then(x => {
+                    if (x.type === 'ERROR') {
+                        setType('e');
+                        setMsg(x.msg);
+                        setTimeout(() => setType(''), 1500);
+                    } else {
+                        loginHandler(x);
+                        history.push('/')
+                    };
+                }
+            );
+        };
     };
 
     return (
         <section className="login">
-            <form onSubmit={onSubmitHandler} ref={form}>
+            <Notification type={type} msg={msg} />
+            <form onSubmit={onSubmitHandler}>
                 <fieldset>
                     <legend>Login</legend>
                     <p className="field">
@@ -27,6 +54,7 @@ const Login = ({loginHandler}) => {
                             <i className="fas fa-user"></i>
                         </span>
                     </p>
+                    <Message msg={usernameMsg} />
                     <p className="field">
                         <label htmlFor="password">Password</label>
                         <span className="input">
@@ -35,6 +63,7 @@ const Login = ({loginHandler}) => {
                             <i className="fas fa-key"></i>
                         </span>
                     </p>
+                    <Message msg={userPassMsg} />
                     <input className="button submit" type="submit" value="Login" />
                 </fieldset>
             </form>

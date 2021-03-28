@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Notification from '../Shared/Notification';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
 

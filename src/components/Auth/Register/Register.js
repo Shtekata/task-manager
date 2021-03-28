@@ -1,19 +1,22 @@
 import * as authService from '../../../services/authService';
 import { useHistory } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Message from '../../Errors/Message';
+import Notification from '../../Shared/Notification';
 
 const Register = ({ loginHandler }) => {
     const history = useHistory();
     const [msg, setMsg] = useState('');
+    const [type, setType] = useState('');
+    const [message, setMessage] = useState('');
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         if (e.target.password.value !== e.target.rePassword.value) {
             e.target.password.value = '';
             e.target.rePassword.value = ''
-            setMsg('Password and Repeat Password are different!');
-            setTimeout(() => setMsg(''), 1500);
+            setMessage('Password and Repeat Password are different!');
+            setTimeout(() => setMessage(''), 1500);
         };
         authService.register({
             username: e.target.username.value,
@@ -21,11 +24,21 @@ const Register = ({ loginHandler }) => {
             password: e.target.password.value,
             rePassword: e.target.rePassword.value
         })
-        .then(x => { loginHandler(x); history.push('/') });
+            .then(x => {
+                if (x.type === 'ERROR') {
+                    setType('e');
+                    setMsg(x.msg);
+                    setTimeout(() => setType(''), 1500);
+                } else {
+                    loginHandler(x);
+                    history.push('/')
+                };
+            });
     };
 
     return (
         <section class="register">
+            <Notification type={type} msg={msg} />
             <form onSubmit={onSubmitHandler}>
                 <fieldset>
                     <legend>Register</legend>
@@ -61,7 +74,7 @@ const Register = ({ loginHandler }) => {
                             <i className="fas fa-key"></i>
                         </span>
                     </p>
-                    <Message msg={msg} />
+                    <Message message={message} />
                     <input className="button submit" type="submit" value="Register" />
                 </fieldset>
             </form>
