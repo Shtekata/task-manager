@@ -8,32 +8,60 @@ const Register = ({ loginHandler }) => {
     const history = useHistory();
     const [msg, setMsg] = useState('');
     const [type, setType] = useState('');
-    const [message, setMessage] = useState('');
+    const [usernameMsg, setUsernameMsg] = useState('');
+    const [userEmailMsg, setUserEmailMsg] = useState('');
+    const [userPassMsg, setUserPassMsg] = useState('');
+    const [userRePassMsg, setUserRePassMsg] = useState('');
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        let pass = true;
+        if (e.target.username.value.length < 5) {
+            pass = false;
+            setUsernameMsg('Username should be at least 5 characters');
+            setTimeout(() => setUsernameMsg(''), 1500);
+        }
+        if (e.target.email.value.length < 5) {
+            pass = false;
+            setUserEmailMsg('Email should be at least 5 characters');
+            setTimeout(() => setUserEmailMsg(''), 1500);
+        }
+        if (e.target.password.value.length < 5) {
+            pass = false;
+            setUserPassMsg('Password should be at least 5 characters');
+            setTimeout(() => setUserPassMsg(''), 1500);
+        }
+        if (e.target.rePassword.value.length < 5) {
+            pass = false;
+            setUserRePassMsg('Repeat password should be at least 5 characters');
+            setTimeout(() => setUserRePassMsg(''), 1500);
+        }
         if (e.target.password.value !== e.target.rePassword.value) {
+            pass = false;
             e.target.password.value = '';
             e.target.rePassword.value = ''
-            setMessage('Password and Repeat Password are different!');
-            setTimeout(() => setMessage(''), 1500);
-        };
-        authService.register({
-            username: e.target.username.value,
-            email: e.target.email.value,
-            password: e.target.password.value,
-            rePassword: e.target.rePassword.value
-        })
-            .then(x => {
-                if (x.type === 'ERROR') {
-                    setType('e');
-                    setMsg(x.msg);
-                    setTimeout(() => setType(''), 1500);
-                } else {
-                    loginHandler(x);
-                    history.push('/')
-                };
-            });
+            setUserRePassMsg('Password and Repeat Password are different!');
+            setTimeout(() => setUserRePassMsg(''), 1500);
+        }
+        if (pass) {
+            authService.register({
+                username: e.target.username.value,
+                email: e.target.email.value,
+                password: e.target.password.value,
+                rePassword: e.target.rePassword.value
+            })
+                .then(x => {
+                    if (x.type === 'ERROR') {
+                        setType('e');
+                        setMsg(x.msg);
+                        setTimeout(() => setType(''), 1500);
+                    } else {
+                        loginHandler(x);
+                        history.push('/')
+                    };
+                }
+            );
+        }
     };
 
     return (
@@ -50,6 +78,7 @@ const Register = ({ loginHandler }) => {
                             <i className="fas fa-user"></i>
                         </span>
                     </p>
+                    <Message msg={usernameMsg} />
                     <p className="field">
                         <label htmlFor="email">Email</label>
                         <span className="input">
@@ -58,6 +87,7 @@ const Register = ({ loginHandler }) => {
                             <i className="fas fa-user"></i>
                         </span>
                     </p>
+                    <Message msg={userEmailMsg} />
                     <p className="field">
                         <label htmlFor="password">Password</label>
                         <span className="input">
@@ -66,6 +96,7 @@ const Register = ({ loginHandler }) => {
                             <i className="fas fa-key"></i>
                         </span>
                     </p>
+                    <Message msg={userPassMsg} />
                     <p className="field">
                         <label htmlFor="rePassword">Repeat Password</label>
                         <span className="input">
@@ -74,7 +105,7 @@ const Register = ({ loginHandler }) => {
                             <i className="fas fa-key"></i>
                         </span>
                     </p>
-                    <Message message={message} />
+                    <Message msg={userRePassMsg} />
                     <input className="button submit" type="submit" value="Register" />
                 </fieldset>
             </form>
