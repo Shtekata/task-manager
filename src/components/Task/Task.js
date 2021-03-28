@@ -1,6 +1,6 @@
 const Task = ({ task: x }) => (
     <div className='task'>
-        <img className='task-img' src="blue-origami-bird.png" alt="Origami" />
+        <img className='task-img' src="/skull.png" alt="skull" />
         <h2 className='task-title'>{ x.title }</h2>
         <p className='description'>{x.description}</p>
         <div className='task-div'>

@@ -6,9 +6,13 @@ import TaskList from '../TaskList';
 import About from '../About';
 import ContactUs from '../ContactUs';
 import KanbanBoard from '../Kanban-board/Kanban-board';
+import Auth from '../Auth';
 
 class Body extends Component{
-    constructor(props) { super(props); this.state = {  tasks: [], selectedTask: null } }
+    constructor(props) {
+        super(props);
+        this.state = { tasks: [], selectedTask: null }
+    }
     
     componentDidMount() {
         testService.testMessage.then(x => console.log(x));
@@ -59,7 +63,10 @@ class Body extends Component{
                 <main className='main'>
                     <Switch>
                         <Route path='/' exact>
-                            <KanbanBoard/>
+                            <KanbanBoard />
+                        </Route>
+                        <Route path='/auth'>
+                            <Auth loginHandler={this.props.loginHandler} logoutHandler={this.props.logoutHandler} />
                         </Route>
                         <Route path='/tasks-test'><TaskList tasks={this.state.tasks} /></Route>
                         <Route path='/about' component={About} />

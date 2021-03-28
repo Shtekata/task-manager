@@ -10,7 +10,7 @@ const Footer = () => (
             <Link to='/about' className='footer-item'>About</Link>
             <Link to='/about' className='footer-item'>About</Link>
             <Link to='/about' className='footer-item'>About</Link>
-            <Link to='/' className='footer-item'><img src="blue-origami-bird-flipped.png" alt="Blue origami" /></Link>
+            <Link to='/' className='footer-item'><img src="/caveman.png" alt="caveman" /></Link>
         </div>
         <p>Software University &copy; <span className='ala-bala'>2021</span></p>
         <style jsx>{`
@@ -44,7 +44,7 @@ const Footer = () => (
     width: 100%;
   }
   .footer-item:last-child {
-    width: 67px;
+    width: 55px
   }
   .footer-item:not(:last-child) {
     padding: 12px 15px;

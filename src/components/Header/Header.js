@@ -1,23 +1,27 @@
 import { Link } from 'react-router-dom';
+import NavLogin from './NavLogin';
+import NavLogout from './NavLogout';
 
-const Header = () => (
+const Header = ({ user }) => (
   <nav className='navigation'>
     <div className='div'>
-      <Link to='/' className='header-item'><img src="white-origami-bird.png" alt="White origami" /></Link>
+      <Link to='/' className='header-item'><img src="/bird.png" alt="bird" /></Link>
       <Link to='/' className='header-item'>Home</Link>
       <Link to='/tasks-test' className='header-item'>Tasks Test</Link>
       <Link to='/contact-us' className='header-item'>Contact Us</Link>
       <Link to='/contact-us-custom' className='header-item'>Con Us Cus</Link>
       <Link to='/about' className='header-item'>About</Link>
-      <Link to='/about' className='header-item'>About</Link>
-      <Link to='/about' className='header-item'>About</Link>
+      {user
+        ? <NavLogout user={user} />
+        : <NavLogin />
+      }
     </div>
     <style jsx>{`
   .navigation {
       width: 100%;
       height: 70px;
-      background-color: #234465;
-      border-bottom: 2px solid #ffa000;
+      background-color: #4b61a1;
+      border-bottom: 2px solid #e29510;
       border-top: 2px solid #ffa000;
   }
   .div{
@@ -34,7 +38,7 @@ const Header = () => (
     width: 100%;
   }
   .header-item:first-child {
-    width: 67px;
+    width: 43px;
   }
   .header-item:not(:first-child) {
     padding: 12px 15px;
