@@ -54,7 +54,7 @@ class Body extends Component{
     getPosts() {
         const task = this.state.selectedTask;
         if (!task) return this.state.tasks;
-        return this.state.tasks.slice(task, task + 1);
+        return this.state.tasks.slice(task - 1, task);
     };
 
     render() {
