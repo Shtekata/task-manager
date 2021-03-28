@@ -32,6 +32,7 @@ const Login = ({ loginHandler }) => {
                         setMsg(x.msg);
                         setTimeout(() => setType(''), 1500);
                     } else {
+                        e.target.reset();
                         loginHandler(x);
                         history.push('/')
                     };
