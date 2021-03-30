@@ -8,7 +8,7 @@ const Header = ({ user, logoutHandler }) => (
     <div className='div'>
       <Link to='/' className='header-item'><img src="/bird.png" alt="bird" /></Link>
       <Link to='/' className='header-item'>Home</Link>
-      <Link to='/tasks-test' className='header-item'>Tasks Test</Link>
+      <Link to='/articles' className='header-item'>Articles</Link>
       <Link to='/contact-us' className='header-item'>Contact Us</Link>
       <Link to='/about' className='header-item'>About</Link>
       <Link to='/music' className='header-item'>Music</Link>

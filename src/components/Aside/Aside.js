@@ -1,17 +1,27 @@
 import { NavLink } from 'react-router-dom';
 
 
-const Aside = ({ onAsideItemClick }) => {
+const Aside = ({
+    label,
+    label1,
+    label2,
+    label3,
+    label4,
+    label5,
+    label6,
+    label7,
+    onAsideItemClick
+}) => {
     return (
         <aside className='aside'>
-            <NavLink to='/aside/all' className='aside-item' onClick={() => onAsideItemClick()}>Going to All</NavLink>
-            <NavLink to='/aside/1' className='aside-item' onClick={() => onAsideItemClick(1)}>Going to 1</NavLink>
-            <NavLink to='/aside/2' className='aside-item' onClick={() => onAsideItemClick(2)}>Going to 2</NavLink>
-            <NavLink to='/aside/3' className='aside-item' onClick={() => onAsideItemClick(3)}>Going to 3</NavLink>
-            <NavLink to='/aside/4' className='aside-item' onClick={() => onAsideItemClick(4)}>Going to 4</NavLink>
-            <NavLink to='/aside/5' className='aside-item' onClick={() => onAsideItemClick(5)}>Going to 5</NavLink>
-            <NavLink to='/aside/6' className='aside-item' onClick={() => onAsideItemClick(6)}>Going to 6</NavLink>
-            <NavLink to='/aside/7' className='aside-item' onClick={() => onAsideItemClick(7)}>Going to 7</NavLink>
+            <NavLink to='/aside/all' className='aside-item' onClick={() => onAsideItemClick()}>{label}</NavLink>
+            <NavLink to='/aside/1' className='aside-item' onClick={() => onAsideItemClick(1)}>{label1}</NavLink>
+            <NavLink to='/aside/2' className='aside-item' onClick={() => onAsideItemClick(2)}>{label2}</NavLink>
+            <NavLink to='/aside/3' className='aside-item' onClick={() => onAsideItemClick(3)}>{label3}</NavLink>
+            <NavLink to='/aside/4' className='aside-item' onClick={() => onAsideItemClick(4)}>{label4}</NavLink>
+            <NavLink to='/aside/5' className='aside-item' onClick={() => onAsideItemClick(5)}>{label5}</NavLink>
+            <NavLink to='/aside/6' className='aside-item' onClick={() => onAsideItemClick(6)}>{label6}</NavLink>
+            <NavLink to='/aside/7' className='aside-item' onClick={() => onAsideItemClick(7)}>{label7}</NavLink>
             <style jsx>{`
             .aside{
                 display: flex;

@@ -51,12 +51,6 @@ class Body extends Component{
         this.setState(() => ({ selectedTask: id }));
     };
 
-    getPosts() {
-        const task = this.state.selectedTask;
-        if (!task) return this.state.tasks;
-        return this.state.tasks.slice(task - 1, task);
-    };
-
     render() {
         return (
             <div className='container'>
@@ -69,11 +63,11 @@ class Body extends Component{
                         <Route path='/auth'>
                             <Auth loginHandler={this.props.loginHandler} logoutHandler={this.props.logoutHandler} />
                         </Route>
-                        <Route path='/tasks-test'><TaskList tasks={this.state.tasks} /></Route>
                         <Route path='/about' component={About} />
                         <Route path='/music' component={Music} />
                         <Route path='/contact-us' component={ContactUs} />
-                        <Route path='/aside/:id'><TaskList tasks={this.getPosts()} /></Route>
+                        <Route path='/articles' component={TaskList}/>
+                        <Route path='/aside/:id' component={TaskList} />
                         <Route render={(props) => <h1 {...props}>Error Page =&gt; :)</h1>} />
                     </Switch>
                 </main>
