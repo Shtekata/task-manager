@@ -64,12 +64,13 @@ const DragNDrop = ({ data }) => {
             ))}
             <style jsx>{`
         .drag-and-drop{
-            padding: .5rem;
+            padding: 1rem .5rem;
             display: grid;
-            gap: .5rem;
+            gap: 1rem;
             height: 100%;
-            align-items: start;
-            grid-template-columns: repeat(auto-fill, 300px);
+            align-items: baseline;
+            grid-template-columns: repeat(auto-fill, 32%);
+            justify-content: center;
         }
         .dnd-group{
             background-color: rgb(247, 225, 240);

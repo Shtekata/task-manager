@@ -25,10 +25,6 @@ class Body extends Component{
             localStorage.setItem('token', x.token);
             this.setState(() => ({ tasks: x.enitities }));
         });
-        
-        // testService.register({ username: 'ShtekataEkataGek', email: 'gesheval-eshaval-gek@gmail.com', password: '7u87u8', rePassword: '7u87u8' });
-        // testService.login({ username: 'ShtekataEkataGek', password: '7u87u8' });
-        // testService.logout();
 
         // testService.createEntity({
         //     title: 'Pesho-Mesho-Kesho',

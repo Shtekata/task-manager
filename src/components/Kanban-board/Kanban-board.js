@@ -1,14 +1,20 @@
 import DragNDrop from "../DragNDrop.js/DragNDrop";
+import useFetch from "../../Hooks/useFetch";
+
+
 
 const data = [
-    { title: 'Group 1', items: ['Item 1', 'Item 2', 'Item 3'] },
-    { title: 'Group 2', items: ['Item 4', 'Item 5'] }
+    { title: 'To Do', items: ['Item 1', 'Item 2', 'Item 3'] },
+    { title: 'In Progress', items: ['Item 4', 'Item 5'] },
+    { title: 'Done', items: ['Item 4', 'Item 5'] }
 ];
 
-const KanbanBoard = () => (
-    <div className='kanban-board'>
-        <DragNDrop data={data}/>
-        <style jsx>{`
+const KanbanBoard = () => {
+    const [serverData, isDataLoading] = useFetch({});
+    return (
+        <div className='kanban-board'>{console.log(serverData)}
+            <DragNDrop data={data} />
+            <style jsx>{`
         .kanban-board{
             color: white;
             background-color: thistle;
@@ -16,6 +22,7 @@ const KanbanBoard = () => (
             height: 100%;
         }
         `}</style>
-    </div>
-);
+        </div>
+    )
+};
 export default KanbanBoard;
