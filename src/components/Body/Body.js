@@ -12,7 +12,11 @@ import Music from '../Music';
 class Body extends Component{
     constructor(props) {
         super(props);
-        this.state = { tasks: [], selectedTask: null }
+        this.state = {
+            tasks: [],
+            selectedTask: null,
+            labels: [['home', 'Home'], ['about', 'About'], ['articles', 'Articles'], ['musical', 'Musical'], ['contact-us', 'Contact Us']]
+        }
     }
     
     componentDidMount() {
@@ -54,17 +58,16 @@ class Body extends Component{
     render() {
         return (
             <div className='container'>
-                <Aside onAsideItemClick={this.onAsideItemClickApp.bind(this)} />
+                <Aside onAsideItemClick={this.onAsideItemClickApp.bind(this)} labels={this.state.labels}/>
                 <main className='main'>
                     <Switch>
-                        <Route path='/' exact>
-                            <KanbanBoard />
-                        </Route>
+                        <Route path='/' exact> <KanbanBoard /> </Route>
+                        <Route path='/home'> <KanbanBoard /> </Route>
                         <Route path='/auth'>
                             <Auth loginHandler={this.props.loginHandler} logoutHandler={this.props.logoutHandler} />
                         </Route>
                         <Route path='/about' component={About} />
-                        <Route path='/music' component={Music} />
+                        <Route path='/musical' component={Music} />
                         <Route path='/contact-us' component={ContactUs} />
                         <Route path='/articles' component={TaskList}/>
                         <Route path='/aside/:id' component={TaskList} />
@@ -75,7 +78,7 @@ class Body extends Component{
                     .container{
                       display: flex;
                       justify-content: space-between;
-                      min-height: 78.63vh;
+                      min-height: 80.17vh;
                     }
                     .main{
                         flex-grow: 1;

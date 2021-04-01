@@ -8,10 +8,10 @@ const TaskList = () => {
 
     const [tasks, setTasks] = useState([]);
     const [currentTasks, setCurrentTasks] = useState([]);
-    const [labels, setLabels] = useState({
-        label: 'All', label1: 'P-M-A', label2: 'P-M-D', label3: 'P-M-K',
-        label4: 'P-M-L', label5: 'P-M-N', label6: 'P-M-S', label7: 'P-M-T'
-    });
+    const [labels, setLabels] = useState([
+        ['aside/all', 'All'], ['aside/p-m-a', 'P-M-A'], ['aside/p-m-d', 'P-M-D'], ['aside/p-m-k', 'P-M-K'],
+        ['aside/p-m-l', 'P-M-L'], ['aside/p-m-n', 'P-M-N'], ['aside/p-m-s', 'P-M-S'], ['aside/p-m-t', 'P-M-T']
+    ]);
 
     useEffect(() => {
         taskService.getEntities().then(x => {
@@ -23,7 +23,7 @@ const TaskList = () => {
     }, []);
 
     const onAsideItemClickApp = (id) => {
-        if (!id) return setCurrentTasks(tasks);
+        if (id===0) return setCurrentTasks(tasks);
         const task = tasks.slice(id - 1, id);
         setCurrentTasks(task);
     };
@@ -36,7 +36,7 @@ const TaskList = () => {
                     {currentTasks.map(x => <Task key={x._id} task={x} />)}
                 </div>
             </div>
-            <Aside onAsideItemClick={onAsideItemClickApp} {...labels} />
+            <Aside onAsideItemClick={onAsideItemClickApp} path='aside' labels={labels} />
             <style jsx>{`
             .title {
                 text-align: center;
