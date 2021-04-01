@@ -76,7 +76,11 @@ const Header = ({ user, logoutHandler }) => (
       display: flex;
       align-items: center;
       color: gold;
-      font-size: 2rem;
+    }
+    @media (min-width: 989px) {
+       .header-central {
+         font-size: 2rem;
+       }
     }
     @media (prefers-reduced-motion: no-preference) {
       .header-img {
