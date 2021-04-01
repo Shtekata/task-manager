@@ -78,7 +78,7 @@ class Body extends Component{
                     .container{
                       display: flex;
                       justify-content: space-between;
-                      min-height: 80.17vh;
+                      min-height: 79.86vh;
                     }
                     .main{
                         flex-grow: 1;
