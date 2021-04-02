@@ -59,11 +59,6 @@ const Register = () => {
                 .catch(x => setErr(x.message));
         }    
     }
-    
-
-            
-    
-
 
     return (
         <section class="register">
