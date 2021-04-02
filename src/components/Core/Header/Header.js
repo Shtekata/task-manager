@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../../../Context';
+import { Context } from '../Context';
 import Notification from '../../Shared/Notification';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';

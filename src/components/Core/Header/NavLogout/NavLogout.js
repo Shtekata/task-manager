@@ -1,6 +1,6 @@
 import { Fragment, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Context } from '../../../../Context';
+import { Context } from '../../Context';
 import * as authService from '../../../../services/authService';
 
 

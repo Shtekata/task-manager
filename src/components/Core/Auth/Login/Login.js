@@ -1,8 +1,8 @@
-import * as authService from '../../../services/authService';
+import * as authService from '../../../../services/authService';
 import { useHistory } from 'react-router-dom';
 import { useContext, useState } from 'react';
-import Message from '../../Errors/Message';
-import { Context } from '../../../Context/Context';
+import Message from '../../../Errors/Message';
+import { Context } from '../../Context';
 
 const Login = () => {
     const history = useHistory();

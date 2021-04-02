@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
-import Body from './components/Body';
+import Body from './components/Core/Body';
 import Footer from './components/Core/Footer';
 import Header from './components/Core/Header';
-import { Provider } from './Context/Context';
+import { Provider } from './components/Core/Context';
 
 function App() {
   return (

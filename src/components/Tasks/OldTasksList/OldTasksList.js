@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Route } from 'react-router';
-import * as taskService from '../../services/taskService';
-import Aside from '../Aside';
-import Task from '../Task';
+import * as taskService from '../../../services/taskService';
+import Aside from '../../Shared/Aside';
+import Task from './OldTask';
 
-const TaskList = () => {
+const OldTasksList = () => {
 
     const [tasks, setTasks] = useState([]);
     const [currentTasks, setCurrentTasks] = useState([]);
@@ -53,4 +52,4 @@ const TaskList = () => {
     );
 };
 
-export default TaskList;
+export default OldTasksList;

@@ -1,21 +1,19 @@
 import { Component } from 'react';
 import { Route, Link, NavLink, Redirect, Switch } from 'react-router-dom';
-import { testService } from '../../services/testService';
-import * as taskService from '../../services/taskService';
-import Aside from '../Aside';
-import TaskList from '../TaskList';
-import About from '../About';
-import ContactUs from '../ContactUs';
-import KanbanBoard from '../Kanban-board/Kanban-board';
+import Aside from '../../Shared/Aside';
+import TaskList from '../../Tasks/OldTasksList';
+import About from '../../Aside-nav-comp/About';
+import ContactUs from '../../Aside-nav-comp/ContactUs';
+import KanbanBoard from '../../Kanban-board/Kanban-board';
 import Auth from '../Auth';
-import Music from '../Music';
+import Music from '../../Aside-nav-comp/Music';
 
 class Body extends Component{
     constructor(props) {
         super(props);
         this.state = {
             selectedTask: null,
-            labels: [['home', 'Home'], ['about', 'About'], ['articles', 'Articles'],
+            labels: [['home', 'Home'], ['about', 'About'], ['old-tasks', 'Old Tasks'],
             ['musical', 'Musical'], ['contact-us', 'Contact Us']]
         }
     }
@@ -56,7 +54,7 @@ class Body extends Component{
                         <Route path='/about' component={About} />
                         <Route path='/musical' component={Music} />
                         <Route path='/contact-us' component={ContactUs} />
-                        <Route path='/articles' component={TaskList}/>
+                        <Route path='/old-tasks' component={TaskList}/>
                         <Route path='/aside/:id' component={TaskList} />
                         <Route render={(props) => <h1 {...props}>Error Page =&gt; :)</h1>} />
                     </Switch>

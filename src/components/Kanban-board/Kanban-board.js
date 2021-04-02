@@ -1,4 +1,4 @@
-import DragNDrop from "../DragNDrop.js/DragNDrop";
+import DragNDrop from "./DragNDrop";
 import useFetch from "../../Hooks/useFetch";
 import Notification from "../Shared/Notification";
 import { useEffect, useState } from "react";

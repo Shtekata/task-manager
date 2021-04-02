@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
-import { Context } from "../../Context/Context";
-import * as taskService from '../../services/taskService';
+import { Context } from "../../Core/Context/Context";
+import * as taskService from '../../../services/taskService';
 
 const DragNDrop = ({ data, isLoading }) => {
     const [list, setList] = useState([]);

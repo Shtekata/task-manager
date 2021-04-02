@@ -1,4 +1,4 @@
-const Task = ({ task: x }) => (
+const OldTask = ({ task: x }) => (
     <div className='task'>
         <img className='task-img' src="/skull.png" alt="skull" />
         <h2 className='task-title'>{ x.title }</h2>
@@ -39,4 +39,4 @@ const Task = ({ task: x }) => (
     </div>
 );
 
-export default Task;
+export default OldTask;
