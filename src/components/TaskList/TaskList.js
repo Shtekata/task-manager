@@ -16,7 +16,7 @@ const TaskList = () => {
     useEffect(() => {
         taskService.getEntities().then(x => {
             localStorage.setItem('token', x.token);
-            const entities = x.enitities;
+            const entities = x.entities;
             setTasks(entities);
             setCurrentTasks(entities);
         });
