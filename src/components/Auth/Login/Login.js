@@ -8,6 +8,7 @@ const Login = ({ loginHandler }) => {
     const history = useHistory();
     const [msg, setMsg] = useState('');
     const [type, setType] = useState('');
+    const [time, setTime] = useState('');
     const [usernameMsg, setUsernameMsg] = useState('');
     const [userPassMsg, setUserPassMsg] = useState('');
 
@@ -43,7 +44,7 @@ const Login = ({ loginHandler }) => {
 
     return (
         <section className="login">
-            <Notification type={type} msg={msg} />
+            <Notification type={type} msg={msg} time={time}/>
             <form onSubmit={onSubmitHandler}>
                 <fieldset>
                     <legend>Login</legend>

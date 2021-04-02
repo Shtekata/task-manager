@@ -1,19 +1,26 @@
 import DragNDrop from "../DragNDrop.js/DragNDrop";
 import useFetch from "../../Hooks/useFetch";
-
-
-
-const data = [
-    { title: 'To Do', items: ['Item 1', 'Item 2', 'Item 3'] },
-    { title: 'In Progress', items: ['Item 4', 'Item 5'] },
-    { title: 'Done', items: ['Item 4', 'Item 5'] }
-];
+import Notification from "../Shared/Notification";
+import { useEffect, useState } from "react";
 
 const KanbanBoard = () => {
-    const [serverData, isDataLoading] = useFetch({});
+    const [data, isDataLoading, err] = useFetch([]);
+    const [msg, setMsg] = useState('');
+    const [type, setType] = useState('');
+    const [time, setTime] = useState('');
+
+    useEffect(() => {
+        if (err) {
+        setMsg(err.message);
+        setType('e');
+        setTime(5000);    
+        };
+    }, [err]);
+    
     return (
-        <div className='kanban-board'>{console.log(serverData)}
-            <DragNDrop data={data} />
+        <div className='kanban-board'>
+            <Notification type={type} msg={msg} time={time}/>
+            <DragNDrop data={data} isLoading={isDataLoading} />
             <style jsx>{`
         .kanban-board{
             color: white;

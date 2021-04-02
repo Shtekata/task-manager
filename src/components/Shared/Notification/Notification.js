@@ -1,20 +1,25 @@
-const Notification = ({ msg, type }) => {
-    const classesL = ['notification', 'hidden'];
-    const classesI = ['notification', 'hidden'];
-    const classesE = ['notification', 'hidden'];
-    type === 'l' ? classesL.pop()
-        : type === 'i' ? classesI.pop()
-            : type === 'e' ? classesE.pop()
-                : type = '';
+import { useEffect, useState } from "react";
+
+const Notification = ({ msg, type, time = 1500 }) => {
+    const [classesL, setClassesL] = useState('notification hidden');
+    const [classesI, setClassesI] = useState('notification hidden');
+    const [classesE, setClassesE] = useState('notification hidden');
+
+    useEffect(() => {
+        if (type === 'l') { setClassesL('notification'); setTimeout(() => setClassesL('notification hidden'), time) };
+        if (type === 'i') { setClassesI('notification'); setTimeout(() => setClassesI('notification hidden'), time) };
+        if (type === 'e') { setClassesE('notification'); setTimeout(() => setClassesE('notification hidden'), time) };
+    }, [msg, type, time]);
+
     return (
         <div id="notifications">
-            <div id="loadingBox" className={classesL.join(' ')}>
+            <div id="loadingBox" className={classesL}>
                 <span>Loading …</span>
             </div>
-            <div id="infoBox" className={classesI.join(' ')}>
+            <div id="infoBox" className={classesI}>
                 <span>{msg}</span>
             </div>
-            <div id="errorBox" className={classesE.join(' ')}>
+            <div id="errorBox" className={classesE}>
                 <span>{msg}</span>
             </div>
             <style jsx>{`
