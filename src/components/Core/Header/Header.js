@@ -1,17 +1,22 @@
-import { Fragment, useContext, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ErrContext } from '../../../Context/ErrorContext';
+import { Context } from '../../../Context';
 import Notification from '../../Shared/Notification';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
 
-const Header = ({ user, logoutHandler }) => {
+const Header = () => {
 
-  const [err,setErr] = useContext(ErrContext);
+  const [user, setUser, err, setErr] = useContext(Context);
+  const [time, setTime] = useState(3000);
+  
+  useEffect(() => {
+    if(err) setTimeout(() => setErr(null), time);
+  }, [err]);
 
   return (
     <Fragment>
-      <Notification msg={err} type='e' time={3000} />
+      <Notification msg={err} type='e' />
       <nav className='navigation'>
         <div className='header-div'>
           <div className="header header-side header-div header-left">
@@ -25,7 +30,7 @@ const Header = ({ user, logoutHandler }) => {
           </div>
           <div className="header header-side header-div header-right">
             {user
-              ? <NavLogout user={user} logoutHandler={logoutHandler} />
+              ? <NavLogout />
               : <NavLogin />
             }
           </div>

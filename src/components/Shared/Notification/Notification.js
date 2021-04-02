@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 
-const Notification = ({ msg, type, time = 1500 }) => {
+const Notification = ({ msg, type }) => {
     const [classesL, setClassesL] = useState('notification hidden');
     const [classesI, setClassesI] = useState('notification hidden');
     const [classesE, setClassesE] = useState('notification hidden');
 
     useEffect(() => {
-        if (!msg) return;
-        if (type === 'l') { setClassesL('notification'); setTimeout(() => setClassesL('notification hidden'), time) };
-        if (type === 'i') { setClassesI('notification'); setTimeout(() => setClassesI('notification hidden'), time) };
-        if (type === 'e') { setClassesE('notification'); setTimeout(() => setClassesE('notification hidden'), time) };
-    }, [msg, type, time]);
+        if (msg) {
+            if (type === 'l') setClassesL('notification');
+            if (type === 'i') setClassesI('notification');
+            if (type === 'e') setClassesE('notification');
+        } else {
+            if (type === 'l') setClassesL('notification hidden');
+            if (type === 'i') setClassesI('notification hidden');
+            if (type === 'e') setClassesE('notification hidden');
+        }
+    }, [msg]);
 
     return (
         <div id="notifications">

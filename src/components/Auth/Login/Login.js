@@ -1,16 +1,15 @@
 import * as authService from '../../../services/authService';
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Message from '../../Errors/Message';
-import Notification from '../../Shared/Notification';
+import { Context } from '../../../Context/Context';
 
-const Login = ({ loginHandler }) => {
+const Login = () => {
     const history = useHistory();
-    const [msg, setMsg] = useState('');
-    const [type, setType] = useState('');
-    const [time, setTime] = useState('');
     const [usernameMsg, setUsernameMsg] = useState('');
     const [userPassMsg, setUserPassMsg] = useState('');
+
+    const [user, setUser, err, setErr] = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -28,23 +27,16 @@ const Login = ({ loginHandler }) => {
         if (pass) {
             authService.login({ username: e.target.username.value, password: e.target.password.value })
                 .then(x => {
-                    if (x.type === 'ERROR') {
-                        setType('e');
-                        setMsg(x.msg);
-                        setTimeout(() => setType(''), 1500);
-                    } else {
-                        e.target.reset();
-                        loginHandler(x);
-                        history.push('/')
-                    };
-                }
-            );
+                    e.target.reset();
+                    setUser(x.username);
+                    history.push('/');
+                })
+                .catch(x => setErr(x.message));
         };
     };
 
     return (
         <section className="login">
-            <Notification type={type} msg={msg} time={time}/>
             <form onSubmit={onSubmitHandler}>
                 <fieldset>
                     <legend>Login</legend>

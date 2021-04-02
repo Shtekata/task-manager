@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Route, Link, NavLink, Redirect, Switch } from 'react-router-dom';
 import { testService } from '../../services/testService';
+import * as taskService from '../../services/taskService';
 import Aside from '../Aside';
 import TaskList from '../TaskList';
 import About from '../About';
@@ -13,19 +14,13 @@ class Body extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            tasks: [],
             selectedTask: null,
-            labels: [['home', 'Home'], ['about', 'About'], ['articles', 'Articles'], ['musical', 'Musical'], ['contact-us', 'Contact Us']]
+            labels: [['home', 'Home'], ['about', 'About'], ['articles', 'Articles'],
+            ['musical', 'Musical'], ['contact-us', 'Contact Us']]
         }
     }
     
     componentDidMount() {
-        testService.testMessage.then(x => console.log(x));
-        testService.getEntities().then(x => {
-            localStorage.setItem('token', x.token);
-            this.setState(() => ({ tasks: x.enitities }));
-        });
-
         // testService.createEntity({
         //     title: 'Pesho-Mesho-Kesho',
         //     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea laudantium iusto sunt, non vero veniam quia repudiandae, eaque quis, dignissimos aperiam. Laudantium odit exercitationem aut in iure adipisci, ratione corrupti consequatur magnam nemo, enim repellendus, aspernatur molestiae architecto eligendi non. Eos autem quis qui hic mollitia unde expedita quaerat amet.',
@@ -42,13 +37,11 @@ class Body extends Component{
         // testService.getEntity({ _id: '604e7e9ef743eb33505b2410' });
         // testService.editEntity({ _id: '604e7e9ef743eb33505b2410', description: 'AAAAAAAAAAAAA', solution: 'BBBBBBBBBBBBBB' });
         // testService.deleteEntity({ _id: '604e7e9ef743eb33505b2410' });
-        
-        console.log('Token: ' + localStorage.getItem('token'));
     }
 
     onAsideItemClickApp(id) {
         if (!id) this.setState(() => ({ selectedTask: null }));
-        this.setState(() => ({ selectedTask: id }));
+        this.setState({ selectedTask: id });
     };
 
     render() {
@@ -59,9 +52,7 @@ class Body extends Component{
                     <Switch>
                         <Route path='/' exact> <KanbanBoard /> </Route>
                         <Route path='/home'> <KanbanBoard /> </Route>
-                        <Route path='/auth'>
-                            <Auth loginHandler={this.props.loginHandler} logoutHandler={this.props.logoutHandler} />
-                        </Route>
+                        <Route path='/auth' component={Auth} />
                         <Route path='/about' component={About} />
                         <Route path='/musical' component={Music} />
                         <Route path='/contact-us' component={ContactUs} />

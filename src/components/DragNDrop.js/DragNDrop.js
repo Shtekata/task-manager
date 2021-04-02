@@ -1,14 +1,13 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import { Context } from "../../Context/Context";
 import * as taskService from '../../services/taskService';
-import Notification from "../Shared/Notification";
 
 const DragNDrop = ({ data, isLoading }) => {
     const [list, setList] = useState([]);
     const [isLoad, setIsLoad] = useState(false);
     const [dragging, setDragging] = useState(false);
-    const [msg, setMsg] = useState('');
-    const [type, setType] = useState('');
-    const [time, setTime] = useState('');
+
+    const [err, setErr] = useContext(Context);
 
     useEffect(() => {
         setList(data);
@@ -41,7 +40,7 @@ const DragNDrop = ({ data, isLoading }) => {
     const handleDragEnd = ({ _id, col, row }) => {
         if (dragItem.current !== null && (col !== dragItem.current.i || row !== dragItem.current.ii)) {
             taskService.shiftEntity({ _id, col: dragItem.current.i, row: dragItem.current.ii })
-                .catch(x => { setType(''); setMsg(x.message); setTime(3000); setType('e'); });
+                .catch(x => setErr(x.message));
         };
         if (dragNode.current !== null) dragNode.current.removeEventListener('dragend', handleDragEnd);
         dragItem.current = null;
@@ -56,7 +55,6 @@ const DragNDrop = ({ data, isLoading }) => {
 
     return (
         <Fragment>
-            <Notification type={type} msg={msg} time={time}/>
             {isLoad ? <h1>Is Loading...</h1> : true}
             <div className='drag-and-drop'>
                 {list.map((x, i) => (

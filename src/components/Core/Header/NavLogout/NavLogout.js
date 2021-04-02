@@ -1,10 +1,16 @@
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Context } from '../../../../Context';
 import * as authService from '../../../../services/authService';
 
-const NavLogout = ({ user, logoutHandler }) => {
+
+const NavLogout = () => {
+
+    const history = useHistory();
+    const [user, setUser] = useContext(Context);
+
     const logoutClickHandler = () => authService.logout()
-        .then(x => logoutHandler(x));
+        .then(x => { setUser(null); history.push('/') });
 
     return (
         <Fragment>

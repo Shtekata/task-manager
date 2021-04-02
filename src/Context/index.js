@@ -1,1 +1,2 @@
-export { default } from './ErrorContext';
+export { Context, Provider } from './Context';
+

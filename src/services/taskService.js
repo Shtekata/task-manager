@@ -1,33 +1,43 @@
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
-export const errorHandler = (x) => {
+const errorHandler = (x) => {
     if (x.type === 'ERROR') throw ({ message: x.msg });
     return x;
 }
 
+const headers = () => localStorage.getItem('token') === null
+    ? { 'Content-Type': 'application/json' }
+    : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` };
+
 const createEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+    headers: headers(),
     body: JSON.stringify(x)
-}).then(x => x.json());
+})
+    .then(x => x.json())
+    .then(x => errorHandler(x));
 
 const getEntities = () => fetch(`${REACT_APP_API_URL}/tasks/`, {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+    headers: headers()
 })
     .then(x => x.json())
     .then(x => errorHandler(x));
 
 const getEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
-}).then(x => x.json());
+    headers: headers()
+})
+    .then(x => x.json())
+    .then(x => errorHandler(x));
 
 const editEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+    headers: headers(),
     body: JSON.stringify(x)
-}).then(x => x.json());
+})
+    .then(x => x.json())
+    .then(x => errorHandler(x));
 
 const shiftEntity = ({ _id, col, row }) => {
     const x = {};
@@ -41,7 +51,7 @@ const shiftEntity = ({ _id, col, row }) => {
     }
     return fetch(`${REACT_APP_API_URL}/tasks/${_id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        headers: headers(),
         body: JSON.stringify(x)
     })
         .then(x => x.json())
@@ -50,8 +60,10 @@ const shiftEntity = ({ _id, col, row }) => {
 
 const deleteEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
-}).then(x => x.json());
+    headers: headers()
+})
+    .then(x => x.json())
+    .then(x => errorHandler(x));
 
 export {
     getEntities,
