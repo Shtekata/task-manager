@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import * as authService from '../../../services/authService';
+import * as authService from '../../../../services/authService';
 
 const NavLogout = ({ user, logoutHandler }) => {
     const logoutClickHandler = () => authService.logout()

@@ -1,6 +1,6 @@
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
-const errorHandler = (x) => {
+export const errorHandler = (x) => {
     if (x.type === 'ERROR') throw ({ message: x.msg });
     return x;
 }

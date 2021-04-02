@@ -6,6 +6,7 @@ const Notification = ({ msg, type, time = 1500 }) => {
     const [classesE, setClassesE] = useState('notification hidden');
 
     useEffect(() => {
+        if (!msg) return;
         if (type === 'l') { setClassesL('notification'); setTimeout(() => setClassesL('notification hidden'), time) };
         if (type === 'i') { setClassesI('notification'); setTimeout(() => setClassesI('notification hidden'), time) };
         if (type === 'e') { setClassesE('notification'); setTimeout(() => setClassesE('notification hidden'), time) };
