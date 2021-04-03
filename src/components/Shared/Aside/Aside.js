@@ -23,6 +23,7 @@ const Aside = ({ labels, onAsideItemClick }) => {
                 border-radius: 50px;
                 text-decoration: none;
                 outline: none;
+                background-color: aliceblue;
             }
             .aside-item:hover{
                 border-left: none;

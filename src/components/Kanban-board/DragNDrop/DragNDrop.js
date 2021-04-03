@@ -73,6 +73,7 @@ const DragNDrop = ({ data, isLoading }) => {
                                 onDragEnter={dragging ? (e) => handleDragEnter(e, { i, ii }) : null}
                             >
                                 <p className='dnd-item-title'>{y.title}</p>
+                                <p className='dnd-item-description'>{y.description.length>100?y.description.slice(0,100)+'...':y.description}</p>
                                 <div>
                                 </div>
                             </div>
@@ -108,8 +109,8 @@ const DragNDrop = ({ data, isLoading }) => {
                 min-height: 150px;
                 border-radius: 5px;
                 display: flex;
-                justify-content: center;
                 align-items: center;
+                flex-direction: column;
             }
             .dnd-item *{
                 font-size: 1.2rem;
@@ -117,9 +118,14 @@ const DragNDrop = ({ data, isLoading }) => {
             .dnd-item:not(:last-of-type){
                 margin-bottom: .5rem;
             }
-            .dnd-item-title{
-                align-self: flex-start;
+            .dnd-item-title {
                 font-weight: bold;
+                font-weight: bold;
+                padding: 1.1rem 0;
+            }
+            .dnd-item-description {
+                font-size: 1rem;
+                padding: 0.4rem 1rem;
             }
             .current{
                 background-color: mistyrose;

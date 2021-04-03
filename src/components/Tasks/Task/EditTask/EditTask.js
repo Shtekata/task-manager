@@ -11,10 +11,10 @@ const EditTask = ({ match, history }) => {
         .then(x => setTask(x))
         .catch(x => setErr(x.message)), [match]);
 
-    const onSubmitHandler = (x) => {
-        x.preventDefault();
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
         taskService.editEntity(task)
-            .then(x => { x.target.reset(); history.push(`/tasks/details/${task._id}`) })
+            .then(x => { e.target.reset(); history.push(`/tasks/details/${task._id}`) })
             .catch(x => setErr(x.message));
     };
 

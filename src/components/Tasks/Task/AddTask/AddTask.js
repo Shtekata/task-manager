@@ -5,16 +5,18 @@ import { Context } from "../../../Core/Context";
 
 const AddTask = ({history}) => {
     const [task, setTask] = useState({});
-    const [setErr] = useContext(Context);
+    const [,,,setErr] = useContext(Context);
 
-    const onSubmitHandler = (x) => {
-        x.preventDefault();
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
         taskService.createEntity(task)
-            .then(x => { x.target.reset(); history.push('/') })
+            .then(x => { e.target.reset(); history.push('/') })
             .catch(x => setErr(x.message));
     };
 
     const onChangeHandler = (e) => {
+        if (e.target.name === 'isPublic')
+            return setTask(x => ({ ...x, isPublic: task.isPublic === 'on' ? '' : 'on' }))
         setTask(x => ({ ...x, [e.target.name]: e.target.value }));
     };
 

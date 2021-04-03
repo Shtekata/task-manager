@@ -25,7 +25,7 @@ const TaskFormView =({ type, task, titleMsg, descriptionMsg, onSubmitHandler, on
                 <p className="field">
                     <label htmlFor="isPublic">Public</label>
                     <span className='span-checkbox'>
-                        <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' value={task.isPublic} onChange={onChangeHandler}/>
+                        <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' checked={task.isPublic} onChange={onChangeHandler}/>
                         <span className="actions"></span>
                     </span>
                 </p>
