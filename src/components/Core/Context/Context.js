@@ -6,6 +6,8 @@ export const Provider = props => {
 
     const [user, setUser] = useState(null);
     const [err, setErr] = useState(null);
+    const [isLoad, setIsLoad] = useState(null);
+    const [notif, setNotif] = useState(null);
 
     useEffect(() => {
         const localUser = localStorage.getItem('username');
@@ -13,7 +15,7 @@ export const Provider = props => {
     }, []);
 
     return (
-        <Context.Provider value={[user,setUser,err,setErr]}>
+        <Context.Provider value={[user,setUser,err,setErr,isLoad,setIsLoad,notif,setNotif]}>
             {props.children}
         </Context.Provider>
     );

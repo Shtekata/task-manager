@@ -2,12 +2,15 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const errorHandler = (x) => {
     if (x.type === 'ERROR') {
-        if (x.token) localStorage.setItem('token', x.token);
+        if (x.token !== 'undefined') localStorage.setItem('token', x.token);
+        else localStorage.removeItem('token');
         if (x.username) {
             localStorage.setItem('username', x.username);
             throw ({ message: x.msg, username: x.username });
+        } else {
+            localStorage.removeItem('username');
+            throw ({ message: x.msg })
         };
-        throw ({ message: x.msg })
     };
     return x;
 }

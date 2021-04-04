@@ -1,23 +1,28 @@
 import DragNDrop from "./DragNDrop";
 import useFetch from "../Hooks/useFetch";
+import { Fragment, useContext } from "react";
+import { Context } from "../Core/Context";
 import Notification from "../Shared/Notification";
-import { useEffect, useState } from "react";
 
 const KanbanBoard = () => {
-    const [data, isDataLoading] = useFetch([]);
+    const [data] = useFetch([]);
+    const [, , , , isLoad] = useContext(Context);
 
     return (
-        <div className='kanban-board'>
-            <DragNDrop data={data} isLoading={isDataLoading} />
+        <Fragment>
+            <Notification type={isLoad?'l':''}/>
+            <div className='kanban-board'>
+                <DragNDrop data={data} />
+            </div>
             <style jsx>{`
-        .kanban-board{
-            color: white;
-            background-color: thistle;
-            font-size: calc(10px + 2vmin);
-            height: 100%;
-        }
-        `}</style>
-        </div>
+            .kanban-board{
+                color: white;
+                background-color: thistle;
+                font-size: calc(10px + 2vmin);
+                height: 100%;
+            }
+            `}</style>
+        </Fragment>
     )
 };
 export default KanbanBoard;

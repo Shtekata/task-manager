@@ -101,7 +101,10 @@ const Register = () => {
                         </span>
                     </p>
                     <Message msg={userRePassMsg} />
-                    <input className="button submit" type="submit" value="Register" />
+                    <div className="buttons">
+                        <input className="button submit" type="submit" value="Register" />
+                        <input className="button submit" type="button" value="Back" onClick={() => history.push('/')} />
+                    </div>
                 </fieldset>
             </form>
             <style jsx>{`
@@ -198,6 +201,10 @@ const Register = () => {
             .err-msg {
                 margin-top: 15px;
             }
+            .buttons {
+            display: flex;
+            justify-content: space-around;
+        }
         `}</style>
         </section>
     )

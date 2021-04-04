@@ -9,7 +9,7 @@ const Login = () => {
     const [usernameMsg, setUsernameMsg] = useState('');
     const [userPassMsg, setUserPassMsg] = useState('');
 
-    const [, setUser,, setErr] = useContext(Context);
+    const [, setUser, , setErr] = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -58,7 +58,10 @@ const Login = () => {
                         </span>
                     </p>
                     <Message msg={userPassMsg} />
-                    <input className="button submit" type="submit" value="Login" />
+                    <div className="buttons">
+                        <input className="button submit" type="submit" value="Login" />
+                        <input className="button submit" type="button" value="Back" onClick={() => history.push('/')} />
+                    </div>
                 </fieldset>
             </form>
             <style jsx>{`
@@ -150,6 +153,10 @@ const Login = () => {
         }
         .err-msg {
             margin-top: 15px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
         }
         `}</style>
         </section>

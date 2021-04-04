@@ -6,16 +6,15 @@ const Notification = ({ msg, type }) => {
     const [classesE, setClassesE] = useState('notification hidden');
 
     useEffect(() => {
+        type === 'l' ? setClassesL('notification') : setClassesL('notification hidden');
         if (msg) {
-            if (type === 'l') setClassesL('notification');
             if (type === 'i') setClassesI('notification');
             if (type === 'e') setClassesE('notification');
         } else {
-            if (type === 'l') setClassesL('notification hidden');
             if (type === 'i') setClassesI('notification hidden');
             if (type === 'e') setClassesE('notification hidden');
         }
-    }, [msg]);
+    }, [msg, type]);
 
     return (
         <div id="notifications">

@@ -3,18 +3,16 @@ import { Context } from "../../Core/Context/Context";
 import * as taskService from '../../../services/taskService';
 import { useHistory } from "react-router";
 
-const DragNDrop = ({ data, isLoading }) => {
+const DragNDrop = ({ data }) => {
     const [list, setList] = useState([]);
-    const [isLoad, setIsLoad] = useState(false);
     const [dragging, setDragging] = useState(false);
 
-    const [, , err, setErr] = useContext(Context);
+    const [user, , err, setErr] = useContext(Context);
     const history = useHistory();
 
     useEffect(() => {
         setList(data);
-        setIsLoad(isLoading);
-    }, [data, isLoading])
+    }, [data])
 
     const dragItem = useRef();
     const currentItem = dragItem.current;
@@ -55,11 +53,18 @@ const DragNDrop = ({ data, isLoading }) => {
         return 'dnd-item';
     }
 
-    const onDoubleClickHandler = ({ _id }) => history.push(`/tasks/edit/${_id}`);
+    const onDoubleClickHandler = ({ _id }) => {
+        if (!user) return setErr('You have first to Log In!');
+        history.push(`/tasks/edit/${_id}`);
+    };
+
+    const onEditClickHandler = ({ _id }) => {
+        if (!user) return setErr('You have first to Log In!');
+        history.push(`/tasks/edit/${_id}`);
+    };
 
     return (
         <Fragment>
-            {isLoad ? <h1>Is Loading...</h1> : true}
             <div className='drag-and-drop'>
                 {list.map((x, i) => (
                     <div
@@ -80,8 +85,8 @@ const DragNDrop = ({ data, isLoading }) => {
                                 <p className='dnd-item-title'>{y.title}</p>
                                 <p className='dnd-item-description'>{y.description.length > 100 ? y.description.slice(0, 100) + '...' : y.description}</p>
                                 <div className="dnd-buttons">
-                                    <button className='dnd-button'>Edit</button>
-                                    <button className='dnd-button'>Delete</button>
+                                    <button className='dnd-button dnd-button-edit' onClick={()=>onEditClickHandler({ _id: y._id })}>Edit</button>
+                                    <button className='dnd-button dnd-button-delete'>Delete</button>
                                 </div>
                                 <div>
                                 </div>
@@ -91,10 +96,14 @@ const DragNDrop = ({ data, isLoading }) => {
                 
                 ))}
             </div>
-            <div className="div-dnd-help">
-                <p className="dnd-help">By holding down the mouse button with a single click you can move the task.</p>
-                <p className="dnd-help">With double click on left mouse button you can edit task.</p>
-            </div>
+            {list.length>0 ?
+                <div className="div-dnd-help">
+                    <p className="dnd-help">By holding down the mouse button with a single click you can move the task.</p>
+                    <p className="dnd-help">With double click on left mouse button you can edit task.</p>
+                </div>
+                :
+                <Fragment />
+            }
             <style jsx>{`
             .drag-and-drop{
                 padding: 1rem .5rem 0 .5rem;
@@ -163,6 +172,16 @@ const DragNDrop = ({ data, isLoading }) => {
                 padding: 0.3rem 0.6rem;
                 border-radius: 15px;
                 margin-bottom: 0.5rem;
+                background-color: antiquewhite;
+            }
+            .dnd-button:hover {
+                cursor: pointer;
+            }
+            .dnd-button-edit {
+                color: seagreen;
+            }
+            .dnd-button-delete {
+                color: brown;
             }
             `}</style>
         </Fragment>
