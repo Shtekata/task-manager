@@ -18,10 +18,12 @@ const EditTask = ({ match, history }) => {
         e.preventDefault();
         taskService.editEntity(task)
             .then(x => { e.target.reset(); history.push({ pathname: `/tasks/details/${task._id}`, state: { task: x.entity } }) })
-            .catch(x => setErr(x.message));
+            .catch(x => { setErr(x.message) });
     };
 
     const onChangeHandler = (e) => {
+        if (e.target.name === 'isPublic')
+            return setTask(x => ({ ...x, isPublic: task.isPublic === 'on' ? '' : 'on' }))
         setTask(x => ({ ...x, [e.target.name]: e.target.value }));
     };
 

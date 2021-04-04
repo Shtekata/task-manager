@@ -67,7 +67,7 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
                 max-width: 30rem;
                 flex-grow: 1;
             }
-            form, form fieldset, form legend, form label, form input, form textarea, form checkbox {
+            form, form fieldset, form legend, form label, form input, form textarea {
                 display: block;
             }
             form fieldset, form legend {
@@ -79,6 +79,7 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
             form fieldset {
                 padding: 2.5em 2em 2em 2em;
                 position: relative;
+                z-index: 0;
             }
             form legend {
                 width: 30%;
@@ -138,7 +139,6 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
                 border-radius: 0.5rem;
                 padding: 0.8rem;
             }
-            
             form textarea:focus {
                 outline: none;
                 border-color: #090;

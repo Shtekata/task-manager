@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <Fragment>
-      <Notification type={isLoad?'l':info?'i':err?'e':null} msg={info} />
+      <Notification type={isLoad ? 'l' : info ? 'i' : err ? 'e' : null} msg={info ? info : err ? err : null} />
       <nav className='navigation'>
         <div className='header-div'>
           <div className="header header-side header-div header-left">

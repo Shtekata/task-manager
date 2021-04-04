@@ -1,11 +1,9 @@
 import { useEffect } from "react";
 
-const DetailsTask = ({location}) => {
+const DetailsTask = ({location, history}) => {
 
-    useEffect(() => console.log(location.state), []);
-
-    const onClickHandler = () => console.log(location.state);
-    const task = {};
+    const onClickHandler = () => history.push('/');
+    const task = location.state.task;
     return (
         <section className="create">
             <form>
@@ -14,22 +12,21 @@ const DetailsTask = ({location}) => {
                     <p className="field">
                         <label htmlFor="title">Title</label>
                         <span className="input">
-                            <input type="text" name="title" id="title" placeholder="Title" value={task.title} />
+                            <p>{task.title}</p>
                             <span className="actions"></span>
                         </span>
                     </p>
                     <p className="field">
                         <label htmlFor="description">Description</label>
                         <span className="input">
-                            <textarea rows="4" cols="45" type="text" name="description" id="description"
-                                placeholder="Description" value={task.description}></textarea>
+                            <p>{task.description}</p>
                             <span className="actions"></span>
                         </span>
                     </p>
                     <p className="field">
                         <label htmlFor="isPublic">Public</label>
                         <span className='span-checkbox'>
-                            <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' checked={task.isPublic} />
+                            <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' checked={task.isPublic} onChange={()=>{}} />
                             <span className="actions"></span>
                         </span>
                     </p>
@@ -60,7 +57,7 @@ const DetailsTask = ({location}) => {
                 max-width: 30rem;
                 flex-grow: 1;
             }
-            form, form fieldset, form legend, form label, form input, form textarea, form checkbox {
+            form, form fieldset, form legend, form label, form input {
                 display: block;
             }
             form fieldset, form legend {
@@ -127,16 +124,6 @@ const DetailsTask = ({location}) => {
             .field .input input:focus+.actions+.fas {
                 color: #090;
             }
-            form textarea {
-                border-radius: 0.5rem;
-                padding: 0.8rem;
-            }
-            
-            form textarea:focus {
-                outline: none;
-                border-color: #090;
-            }
-            
             .description {
                 width: 17rem;
                 height: 10vh;

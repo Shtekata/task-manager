@@ -43,19 +43,10 @@ const Notification = ({ msg, type }) => {
                font-size: 16px;
                font-style: italic;
             }
-             #loadingBox {
-                position: absolute;
-                right: 20px;
-                top: 90px
-            }
-            #loadingBox>span {
-                background: #7CB3E9;
-                box-shadow: 0px 0px 11px 8px rgba(133, 180, 231, 0.5)
-            }
             #infoBox {
                 position: absolute;
                 right: 20px;
-                top: 130px
+                top: 90px
             }
             #infoBox>span {
                 background: #393;
@@ -64,11 +55,20 @@ const Notification = ({ msg, type }) => {
             #errorBox {
                 position: absolute;
                 right: 20px;
-                top: 170px
+                top: 130px
             }
             #errorBox>span {
                 background: #F50;
                 box-shadow: 0px 0px 11px 8px rgba(251, 96, 22, 0.5)
+            }
+            #loadingBox {
+                position: absolute;
+                right: 20px;
+                top: 170px
+            }
+            #loadingBox>span {
+                background: #7CB3E9;
+                box-shadow: 0px 0px 11px 8px rgba(133, 180, 231, 0.5)
             }
         `}</style>
         </div>

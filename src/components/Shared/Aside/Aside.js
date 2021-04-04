@@ -13,6 +13,7 @@ const Aside = ({ labels, onAsideItemClick }) => {
                 flex-direction: column;
                 justify-content: space-evenly;
                 margin: 1rem;
+                max-height: 85vh;
             }
             .aside-item{
                 width: 100px;
