@@ -1,18 +1,20 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../Core/Context/Context";
 import * as taskService from '../../../services/taskService';
+import { useHistory } from "react-router";
 
 const DragNDrop = ({ data, isLoading }) => {
     const [list, setList] = useState([]);
     const [isLoad, setIsLoad] = useState(false);
     const [dragging, setDragging] = useState(false);
 
-    const [err, setErr] = useContext(Context);
+    const [, , err, setErr] = useContext(Context);
+    const history = useHistory();
 
     useEffect(() => {
         setList(data);
         setIsLoad(isLoading);
-    }, [data,isLoading])
+    }, [data, isLoading])
 
     const dragItem = useRef();
     const currentItem = dragItem.current;
@@ -53,6 +55,8 @@ const DragNDrop = ({ data, isLoading }) => {
         return 'dnd-item';
     }
 
+    const onDoubleClickHandler = ({ _id }) => history.push(`/tasks/edit/${_id}`);
+
     return (
         <Fragment>
             {isLoad ? <h1>Is Loading...</h1> : true}
@@ -71,9 +75,14 @@ const DragNDrop = ({ data, isLoading }) => {
                                 className={dragging ? getStyles({ i, ii }) : "dnd-item"}
                                 onDragStart={(e) => handleDragStart(e, { cord: { i, ii }, _id: y._id })}
                                 onDragEnter={dragging ? (e) => handleDragEnter(e, { i, ii }) : null}
+                                onDoubleClick={e => onDoubleClickHandler({ _id: y._id })}
                             >
                                 <p className='dnd-item-title'>{y.title}</p>
-                                <p className='dnd-item-description'>{y.description.length>100?y.description.slice(0,100)+'...':y.description}</p>
+                                <p className='dnd-item-description'>{y.description.length > 100 ? y.description.slice(0, 100) + '...' : y.description}</p>
+                                <div className="dnd-buttons">
+                                    <button className='dnd-button'>Edit</button>
+                                    <button className='dnd-button'>Delete</button>
+                                </div>
                                 <div>
                                 </div>
                             </div>
@@ -82,12 +91,15 @@ const DragNDrop = ({ data, isLoading }) => {
                 
                 ))}
             </div>
+            <div className="div-dnd-help">
+                <p className="dnd-help">By holding down the mouse button with a single click you can move the task.</p>
+                <p className="dnd-help">With double click on left mouse button you can edit task.</p>
+            </div>
             <style jsx>{`
             .drag-and-drop{
-                padding: 1rem .5rem;
+                padding: 1rem .5rem 0 .5rem;
                 display: grid;
                 gap: 1rem;
-                height: 100%;
                 align-items: baseline;
                 grid-template-columns: repeat(auto-fill, 32%);
                 justify-content: center;
@@ -112,6 +124,9 @@ const DragNDrop = ({ data, isLoading }) => {
                 align-items: center;
                 flex-direction: column;
             }
+            .dnd-item:hover{
+                cursor: pointer;
+            }
             .dnd-item *{
                 font-size: 1.2rem;
             }
@@ -129,6 +144,25 @@ const DragNDrop = ({ data, isLoading }) => {
             }
             .current{
                 background-color: mistyrose;
+            }
+            .dnd-help {
+                font-size: 1.2rem;
+            }
+            .div-dnd-help {
+                display: flex;
+                justify-content: space-around;
+                padding: 1rem;
+            }
+            .dnd-buttons {
+                display: flex;
+                width: 100%;
+                justify-content: space-around;
+            }
+            .dnd-button {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+                border-radius: 15px;
+                margin-bottom: 0.5rem;
             }
             `}</style>
         </Fragment>

@@ -8,32 +8,20 @@ import KanbanBoard from '../../Kanban-board/Kanban-board';
 import Auth from '../Auth';
 import Music from '../../Aside-nav-comp/Music';
 import AddTask from '../../Tasks/Task/AddTask/AddTask';
+import EditTask from '../../Tasks/Task/EditTask/EditTask';
+import DetailsTask from '../../Tasks/Task/DetailsTask/DetailsTask';
 
 class Body extends Component{
     constructor(props) {
         super(props);
         this.state = {
             selectedTask: null,
-            labels: [['home', 'Home'], ['add-task', 'Add Task'], ['old-tasks', 'Old Tasks'],
+            labels: [['home', 'Home'], ['tasks/add', 'Add Task'], ['old-tasks', 'Old Tasks'],
                 ['about', 'About'], ['musical', 'Musical'], ['contact-us', 'Contact Us']]
         }
     }
     
     componentDidMount() {
-        // testService.createEntity({
-        //     title: 'Pesho-Mesho-Kesho',
-        //     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea laudantium iusto sunt, non vero veniam quia repudiandae, eaque quis, dignissimos aperiam. Laudantium odit exercitationem aut in iure adipisci, ratione corrupti consequatur magnam nemo, enim repellendus, aspernatur molestiae architecto eligendi non. Eos autem quis qui hic mollitia unde expedita quaerat amet.',
-        //     solution: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, est porro. Cumque, dignissimos veniam quo corporis obcaecati quaerat non rerum molestiae quasi natus quos tempore perferendis voluptas amet, voluptatibus a eaque ad nobis. Soluta, a dolorem. Magni asperiores consequuntur nisi modi, reiciendis velit, vero, quos dignissimos impedit mollitia quo omnis!',
-        //     isPublic: 'on'
-        // }).then(x => {
-        //     if (x.hasOwnProperty('err')) {
-        //         const err = new Error();
-        //         Object.assign(err, x.err);
-        //         // throw err;
-        //         console.log(err);
-        //     }
-        // })
-        // testService.getEntity({ _id: '604e7e9ef743eb33505b2410' });
         // testService.editEntity({ _id: '604e7e9ef743eb33505b2410', description: 'AAAAAAAAAAAAA', solution: 'BBBBBBBBBBBBBB' });
         // testService.deleteEntity({ _id: '604e7e9ef743eb33505b2410' });
     }
@@ -52,7 +40,9 @@ class Body extends Component{
                         <Route path='/' exact> <KanbanBoard /> </Route>
                         <Route path='/home'> <KanbanBoard /> </Route>
                         <Route path='/auth' component={Auth} />
-                        <Route path='/add-task' component={AddTask} />
+                        <Route path='/tasks/add' component={AddTask} />
+                        <Route path='/tasks/edit/:_id' component={EditTask} />
+                        <Route path='/tasks/details/:_id' component={DetailsTask} />
                         <Route path='/old-tasks' component={TaskList} />
                         <Route path='/about' component={About} />
                         <Route path='/musical' component={Music} />

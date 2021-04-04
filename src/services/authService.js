@@ -1,11 +1,18 @@
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const errorHandler = (x) => {
-    if (x.type === 'ERROR') throw ({ message: x.msg });
+    if (x.type === 'ERROR') {
+        if (x.token) localStorage.setItem('token', x.token);
+        if (x.username) {
+            localStorage.setItem('username', x.username);
+            throw ({ message: x.msg, username: x.username });
+        };
+        throw ({ message: x.msg })
+    };
     return x;
 }
 
-const headers = () => localStorage.getItem('token') === null
+const headers = () => (localStorage.getItem('token') === null || localStorage.getItem('token') === 'undefined')
     ? { 'Content-Type': 'application/json' }
     : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` };
 

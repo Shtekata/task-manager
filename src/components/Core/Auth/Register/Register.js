@@ -12,7 +12,7 @@ const Register = () => {
     const [userPassMsg, setUserPassMsg] = useState('');
     const [userRePassMsg, setUserRePassMsg] = useState('');
 
-    const [user, setUser, err, setErr] = useContext(Context);
+    const [, setUser,, setErr] = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();

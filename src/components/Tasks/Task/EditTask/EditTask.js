@@ -5,16 +5,19 @@ import { Context } from "../../../Core/Context";
 
 const EditTask = ({ match, history }) => {
     const [task, setTask] = useState({});
-    const [setErr] = useContext(Context);
+    const [,,,setErr] = useContext(Context);
 
-    useEffect(() => taskService.getEntity(match.params.petId)
-        .then(x => setTask(x))
+    useEffect(() => taskService.getEntity(match.params._id)
+        .then(x => {
+            x.entity.isPublic = x.entity.isPublic === true ? 'on' : '';
+            setTask(x.entity)
+        })
         .catch(x => setErr(x.message)), [match]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         taskService.editEntity(task)
-            .then(x => { e.target.reset(); history.push(`/tasks/details/${task._id}`) })
+            .then(x => { e.target.reset(); history.push({ pathname: `/tasks/details/${task._id}`, state: { task: x.entity } }) })
             .catch(x => setErr(x.message));
     };
 

@@ -4,22 +4,10 @@ import Notification from "../Shared/Notification";
 import { useEffect, useState } from "react";
 
 const KanbanBoard = () => {
-    const [data, isDataLoading, err] = useFetch([]);
-    const [msg, setMsg] = useState('');
-    const [type, setType] = useState('');
-    const [time, setTime] = useState('');
+    const [data, isDataLoading] = useFetch([]);
 
-    useEffect(() => {
-        if (err) {
-        setMsg(err.message);
-        setType('e');
-        setTime(5000);    
-        };
-    }, [err]);
-    
     return (
         <div className='kanban-board'>
-            <Notification type={type} msg={msg} time={time}/>
             <DragNDrop data={data} isLoading={isDataLoading} />
             <style jsx>{`
         .kanban-board{

@@ -9,8 +9,10 @@ const NavLogout = () => {
     const history = useHistory();
     const [user, setUser] = useContext(Context);
 
-    const logoutClickHandler = () => authService.logout()
-        .then(x => { setUser(null); history.push('/') });
+    const logoutClickHandler = (e) => {
+        e.preventDefault();
+        authService.logout()
+        .then(x => { setUser(null); history.push('/') })};
 
     return (
         <Fragment>

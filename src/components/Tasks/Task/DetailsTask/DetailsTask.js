@@ -1,42 +1,39 @@
-import { useHistory } from "react-router";
-import Message from "../../../Errors/Message";
+import { useEffect } from "react";
 
-const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, onChangeHandler }) => {
-    const history = useHistory();
-    const backToHome = () => history.push('/');
+const DetailsTask = ({location}) => {
+
+    useEffect(() => console.log(location.state), []);
+
+    const onClickHandler = () => console.log(location.state);
+    const task = {};
     return (
         <section className="create">
-            <form onSubmit={onSubmitHandler}>
+            <form>
                 <fieldset>
-                    <legend>{type ? 'Edit Task' : 'Add new Task'}</legend>
+                    <legend>Details Task</legend>
                     <p className="field">
                         <label htmlFor="title">Title</label>
                         <span className="input">
-                            <input type="text" name="title" id="title" placeholder="Title" value={task.title} onChange={onChangeHandler} />
+                            <input type="text" name="title" id="title" placeholder="Title" value={task.title} />
                             <span className="actions"></span>
                         </span>
                     </p>
-                    <Message msg={titleMsg} />
                     <p className="field">
                         <label htmlFor="description">Description</label>
                         <span className="input">
                             <textarea rows="4" cols="45" type="text" name="description" id="description"
-                                placeholder="Description" value={task.description} onChange={onChangeHandler}></textarea>
+                                placeholder="Description" value={task.description}></textarea>
                             <span className="actions"></span>
                         </span>
                     </p>
-                    <Message msg={descriptionMsg} />
                     <p className="field">
                         <label htmlFor="isPublic">Public</label>
                         <span className='span-checkbox'>
-                            <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' checked={task.isPublic} onChange={onChangeHandler} />
+                            <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' checked={task.isPublic} />
                             <span className="actions"></span>
                         </span>
                     </p>
-                    <div className="form-view-buttons">
-                        <input className="button submit" type="submit" value={type ? 'Edit' : 'Add'} />
-                        <input className="button submit" type="button" value='Back' onClick={backToHome} />
-                    </div>
+                    <input className="button submit" type="button" value='Back' onClick={onClickHandler} />
                 </fieldset>
             </form>
             <style jsx>{`
@@ -58,10 +55,6 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
                 font-size: 1rem;
                 margin-top: 2rem;
                 outline: none;
-            }
-            .form-view-buttons {
-                display: flex;
-                justify-content: space-around;
             }
             form {
                 max-width: 30rem;
@@ -164,4 +157,4 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
         </section>
     )
 };
-export default TaskFormView;
+export default DetailsTask;

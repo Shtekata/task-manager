@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as taskService from '../../../services/taskService';
+import { Context } from "../../Core/Context";
 
 const useFetch = (initialValue) => {
     const [state, setState] = useState(initialValue);
     const [isLoading, setIsLoading] = useState(false);
-    const [err, setErr] = useState(null);
+
+    const [, setUser,, setErr] = useContext(Context);
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,9 +28,9 @@ const useFetch = (initialValue) => {
                 setState(x)
                 setIsLoading(false)
             })
-            .catch(x => setErr(x));
+            .catch(x => { setErr(x.message); setUser(x.username) });
     }, []);
 
-    return [state, isLoading, err];
+    return [state, isLoading];
 };
 export default useFetch;
