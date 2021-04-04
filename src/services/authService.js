@@ -2,7 +2,7 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const errorHandler = (x) => {
     if (x.type === 'ERROR') {
-        if (x.token !== 'undefined') localStorage.setItem('token', x.token);
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
         else localStorage.removeItem('token');
         if (x.username) {
             localStorage.setItem('username', x.username);
@@ -25,7 +25,11 @@ const register = (x) => fetch(`${REACT_APP_API_URL}/auth/register/`, {
     body: JSON.stringify(x)
 })
     .then(x => x.json())
-    .then(x => { localStorage.setItem('token', x.token); localStorage.setItem('username', x.username); return x })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+        if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
     .then(x => errorHandler(x));
 
 const login = (x) => fetch(`${REACT_APP_API_URL}/auth/login/`, {
@@ -34,7 +38,11 @@ const login = (x) => fetch(`${REACT_APP_API_URL}/auth/login/`, {
     body: JSON.stringify(x)
 })
     .then(x => x.json())
-    .then(x => { localStorage.setItem('token', x.token); localStorage.setItem('username', x.username); return x })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+        if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
     .then(x => errorHandler(x));;
 
 const logout = (x) => fetch(`${REACT_APP_API_URL}/auth/logout`, {

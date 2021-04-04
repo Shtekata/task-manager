@@ -1,14 +1,10 @@
 import DragNDrop from "./DragNDrop";
-import useFetch from "../Hooks/useFetch";
 import { Fragment } from "react";
 
 const KanbanBoard = () => {
-    const [data] = useFetch([]);
     return (
-        <Fragment>
-            <div className='kanban-board'>
-                <DragNDrop data={data} />
-            </div>
+        <div className='kanban-board'>
+            <DragNDrop />
             <style jsx>{`
             .kanban-board{
                 color: white;
@@ -17,7 +13,7 @@ const KanbanBoard = () => {
                 height: 100%;
             }
             `}</style>
-        </Fragment>
+        </div>
     )
 };
 export default KanbanBoard;

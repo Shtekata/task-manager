@@ -32,7 +32,7 @@ const Login = () => {
                     setInfo(x.message);
                     history.push('/');
                 })
-                .catch(x => { setUser(x.username); setErr(x.message); history.push('/') });
+                .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message); history.push('/') });
         };
     };
 

@@ -9,27 +9,27 @@ const DetailsTask = ({location, history}) => {
             <form>
                 <fieldset>
                     <legend>Details Task</legend>
-                    <p className="field">
+                    <div className="field">
                         <label htmlFor="title">Title</label>
                         <span className="input">
                             <p>{task.title}</p>
                             <span className="actions"></span>
                         </span>
-                    </p>
-                    <p className="field">
+                    </div>
+                    <div className="field">
                         <label htmlFor="description">Description</label>
                         <span className="input">
                             <p>{task.description}</p>
                             <span className="actions"></span>
                         </span>
-                    </p>
-                    <p className="field">
+                    </div>
+                    <div className="field">
                         <label htmlFor="isPublic">Public</label>
                         <span className='span-checkbox'>
                             <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' checked={task.isPublic} onChange={()=>{}} />
                             <span className="actions"></span>
                         </span>
-                    </p>
+                    </div>
                     <input className="button submit" type="button" value='Back' onClick={onClickHandler} />
                 </fieldset>
             </form>

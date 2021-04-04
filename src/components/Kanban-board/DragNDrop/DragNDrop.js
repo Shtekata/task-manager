@@ -2,12 +2,15 @@ import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../Core/Context/Context";
 import * as taskService from '../../../services/taskService';
 import { useHistory } from "react-router";
+import useFetch from "../../Hooks/useFetch";
 
-const DragNDrop = ({ data }) => {
+const DragNDrop = () => {
+    const [render, setRender] = useState(false);
+    const [data] = useFetch({initialValue: [], render });
     const [list, setList] = useState([]);
     const [dragging, setDragging] = useState(false);
 
-    const { user, setErr, setInfo } = useContext(Context);
+    const { user, setUser, setErr, setInfo } = useContext(Context);
     const history = useHistory();
 
     useEffect(() => {
@@ -40,7 +43,7 @@ const DragNDrop = ({ data }) => {
     const handleDragEnd = ({ _id, col, row }) => {
         if (dragItem.current !== null && (col !== dragItem.current.i || row !== dragItem.current.ii)) {
             taskService.shiftEntity({ _id, col: dragItem.current.i, row: dragItem.current.ii })
-                .catch(x => setErr(x.message));
+                .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
         };
         if (dragNode.current !== null) dragNode.current.removeEventListener('dragend', handleDragEnd);
         dragItem.current = null;
@@ -62,6 +65,13 @@ const DragNDrop = ({ data }) => {
         if (!user) return setInfo('You have first to Log In!');
         history.push(`/tasks/edit/${_id}`);
     };
+
+    const onDeleteHandler = ({ _id, row }) => {
+        if (!window.confirm('Are you sure you want to delete the task?')) return;
+        if (row !== 2) taskService.deleteEntity(_id)
+            .then(x => render ? setRender(false) : setRender(true))
+            .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
+    }
 
     return (
         <Fragment>
@@ -86,7 +96,7 @@ const DragNDrop = ({ data }) => {
                                 <p className='dnd-item-description'>{y.description.length > 100 ? y.description.slice(0, 100) + '...' : y.description}</p>
                                 <div className="dnd-buttons">
                                     <button className='dnd-button dnd-button-edit' onClick={()=>onEditClickHandler({ _id: y._id })}>Edit</button>
-                                    <button className='dnd-button dnd-button-delete'>Delete</button>
+                                    <button className='dnd-button dnd-button-delete' onClick={()=>onDeleteHandler({_id: y._id, row: i})}>Delete</button>
                                 </div>
                                 <div>
                                 </div>

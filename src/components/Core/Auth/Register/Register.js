@@ -57,7 +57,7 @@ const Register = () => {
                     setInfo(x.message);
                     history.push('/')
                 })
-                .catch(x => setErr(x.message));
+                .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
         }    
     }
 

@@ -2,7 +2,7 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const errorHandler = (x) => {
     if (x.type === 'ERROR') {
-        if (x.token !== 'undefined') localStorage.setItem('token', x.token);
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
         else localStorage.removeItem('token');
         if (x.username) {
             localStorage.setItem('username', x.username);
@@ -25,7 +25,11 @@ const createEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/`, {
     body: JSON.stringify(x)
 })
     .then(x => x.json())
-    .then(x => { localStorage.setItem('token', x.token); return x })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
     .then(x => errorHandler(x));
 
 const getEntities = () => fetch(`${REACT_APP_API_URL}/tasks/`, {
@@ -33,7 +37,11 @@ const getEntities = () => fetch(`${REACT_APP_API_URL}/tasks/`, {
     headers: headers()
 })
     .then(x => x.json())
-    .then(x => { localStorage.setItem('token', x.token); return x })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
     .then(x => errorHandler(x));
 
 const getEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x}`, {
@@ -41,7 +49,11 @@ const getEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x}`, {
     headers: headers()
 })
     .then(x => x.json())
-    .then(x => { localStorage.setItem('token', x.token); return x })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
     .then(x => errorHandler(x));
 
 const editEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
@@ -50,7 +62,11 @@ const editEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
     body: JSON.stringify(x)
 })
     .then(x => x.json())
-    .then(x => { localStorage.setItem('token', x.token); return x })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
     .then(x => errorHandler(x));
 
 const shiftEntity = ({ _id, col, row }) => {
@@ -69,16 +85,24 @@ const shiftEntity = ({ _id, col, row }) => {
         body: JSON.stringify(x)
     })
         .then(x => x.json())
-        .then(x => { localStorage.setItem('token', x.token); return x })
+        .then(x => {
+            if (x.token !== undefined) localStorage.setItem('token', x.token);
+             if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+            return x
+        })
         .then(x => errorHandler(x));
 };
 
-const deleteEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
+const deleteEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x}`, {
     method: 'DELETE',
     headers: headers()
 })
     .then(x => x.json())
-    .then(x => { localStorage.setItem('token', x.token); return x })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+        if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
     .then(x => errorHandler(x));
 
 export {

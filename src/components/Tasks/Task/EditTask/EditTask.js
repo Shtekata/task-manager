@@ -5,7 +5,7 @@ import { Context } from "../../../Core/Context";
 
 const EditTask = ({ match, history }) => {
     const [task, setTask] = useState({});
-    const { setErr } = useContext(Context);
+    const { setErr, setUser } = useContext(Context);
 
     useEffect(() => taskService.getEntity(match.params._id)
         .then(x => {
@@ -18,7 +18,7 @@ const EditTask = ({ match, history }) => {
         e.preventDefault();
         taskService.editEntity(task)
             .then(x => { e.target.reset(); history.push({ pathname: `/tasks/details/${task._id}`, state: { task: x.entity } }) })
-            .catch(x => { setErr(x.message) });
+            .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
     };
 
     const onChangeHandler = (e) => {

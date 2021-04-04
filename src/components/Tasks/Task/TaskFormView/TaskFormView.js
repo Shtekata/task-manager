@@ -34,8 +34,8 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
                         </span>
                     </p>
                     <div className="form-view-buttons">
-                        <input className="button submit" type="submit" value={type ? 'Edit' : 'Add'} />
-                        <input className="button submit" type="button" value='Back' onClick={backToHome} />
+                        <button className="button submit" type="submit">{type ? 'Edit' : 'Add'}</button>
+                        <button className="button submit" type="button" onClick={backToHome}>Back</button>
                     </div>
                 </fieldset>
             </form>

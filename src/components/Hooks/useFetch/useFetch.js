@@ -2,9 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import * as taskService from '../../../services/taskService';
 import { Context } from "../../Core/Context";
 
-const useFetch = (initialValue) => {
+const useFetch = ({ initialValue, render }) => {
     const [state, setState] = useState(initialValue);
-
     const { setUser, setErr, setIsLoad } = useContext(Context);
 
     useEffect(() => {
@@ -27,8 +26,8 @@ const useFetch = (initialValue) => {
                 setState(x)
                 setIsLoad(false)
             })
-            .catch(x => { setErr(x.message); setUser(x.username) });
-    }, []);
+            .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
+    }, [render]);
 
     return [state];
 };
