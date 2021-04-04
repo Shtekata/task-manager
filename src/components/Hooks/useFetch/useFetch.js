@@ -5,7 +5,7 @@ import { Context } from "../../Core/Context";
 const useFetch = (initialValue) => {
     const [state, setState] = useState(initialValue);
 
-    const [, setUser, , setErr, , setIsLoad] = useContext(Context);
+    const { setUser, setErr, setIsLoad } = useContext(Context);
 
     useEffect(() => {
         setIsLoad(true);

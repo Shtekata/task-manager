@@ -7,7 +7,7 @@ const DragNDrop = ({ data }) => {
     const [list, setList] = useState([]);
     const [dragging, setDragging] = useState(false);
 
-    const [user, , , setErr] = useContext(Context);
+    const { user, setErr, setInfo } = useContext(Context);
     const history = useHistory();
 
     useEffect(() => {
@@ -54,12 +54,12 @@ const DragNDrop = ({ data }) => {
     }
 
     const onDoubleClickHandler = ({ _id }) => {
-        if (!user) return setErr('You have first to Log In!');
+        if (!user) return setInfo('You have first to Log In!');
         history.push(`/tasks/edit/${_id}`);
     };
 
     const onEditClickHandler = ({ _id }) => {
-        if (!user) return setErr('You have first to Log In!');
+        if (!user) return setInfo('You have first to Log In!');
         history.push(`/tasks/edit/${_id}`);
     };
 
@@ -102,7 +102,7 @@ const DragNDrop = ({ data }) => {
                     <p className="dnd-help">With double click on left mouse button you can edit task.</p>
                 </div>
                 :
-                <Fragment />
+                true
             }
             <style jsx>{`
             .drag-and-drop{
@@ -174,6 +174,7 @@ const DragNDrop = ({ data }) => {
                 margin-bottom: 0.5rem;
                 background-color: antiquewhite;
                 outline: none;
+                border-color: aliceblue;
             }
             .dnd-button:hover {
                 cursor: pointer;

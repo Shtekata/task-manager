@@ -5,7 +5,7 @@ import { Context } from "../../../Core/Context";
 
 const AddTask = ({history}) => {
     const [task, setTask] = useState({});
-    const [,,,setErr] = useContext(Context);
+    const { setErr } = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();

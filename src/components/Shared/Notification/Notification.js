@@ -11,8 +11,8 @@ const Notification = ({ msg, type }) => {
             if (type === 'i') setClassesI('notification');
             if (type === 'e') setClassesE('notification');
         } else {
-            if (type === 'i') setClassesI('notification hidden');
-            if (type === 'e') setClassesE('notification hidden');
+            setClassesI('notification hidden');
+            setClassesE('notification hidden');
         }
     }, [msg, type]);
 
@@ -32,9 +32,6 @@ const Notification = ({ msg, type }) => {
                 display: none;
             }
             #notifications {
-                position: absolute;
-                top: 85px;
-                right: 20px;
                 opacity: 0.9;
             }
             .notification {
@@ -46,13 +43,28 @@ const Notification = ({ msg, type }) => {
                font-size: 16px;
                font-style: italic;
             }
+             #loadingBox {
+                position: absolute;
+                right: 20px;
+                top: 90px
+            }
             #loadingBox>span {
                 background: #7CB3E9;
                 box-shadow: 0px 0px 11px 8px rgba(133, 180, 231, 0.5)
             }
+            #infoBox {
+                position: absolute;
+                right: 20px;
+                top: 130px
+            }
             #infoBox>span {
                 background: #393;
                 box-shadow: 0px 0px 11px 8px rgba(68, 157, 68, 0.5)
+            }
+            #errorBox {
+                position: absolute;
+                right: 20px;
+                top: 170px
             }
             #errorBox>span {
                 background: #F50;

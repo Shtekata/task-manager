@@ -7,16 +7,15 @@ import NavLogout from './NavLogout';
 
 const Header = () => {
 
-  const [user, setUser, err, setErr] = useContext(Context);
-  const [time, setTime] = useState(3000);
+  const { user, err, setErr, isLoad, info, setInfo, time } = useContext(Context);
   
   useEffect(() => {
-    if(err) setTimeout(() => setErr(null), time);
-  }, [err]);
+    if (isLoad || err || info) setTimeout(() => { setInfo(null); setErr(null) }, time);
+  }, [isLoad, info, err]);
 
   return (
     <Fragment>
-      <Notification msg={err} type='e' />
+      <Notification type={isLoad?'l':info?'i':err?'e':null} msg={info} />
       <nav className='navigation'>
         <div className='header-div'>
           <div className="header header-side header-div header-left">

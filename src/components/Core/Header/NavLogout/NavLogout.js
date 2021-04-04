@@ -7,12 +7,12 @@ import * as authService from '../../../../services/authService';
 const NavLogout = () => {
 
     const history = useHistory();
-    const [user, setUser,, setErr] = useContext(Context);
+    const { user, setUser, setErr, setInfo } = useContext(Context);
 
     const logoutClickHandler = (e) => {
         e.preventDefault();
         authService.logout()
-            .then(x => { setUser(null); history.push('/') })
+            .then(x => { setUser(null); setInfo(x.message); history.push('/') })
             .catch(x => { setErr(x.message); setUser(null); history.push('/') });
     }
 

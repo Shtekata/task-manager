@@ -5,7 +5,7 @@ import { Context } from "../../../Core/Context";
 
 const EditTask = ({ match, history }) => {
     const [task, setTask] = useState({});
-    const [,,,setErr] = useContext(Context);
+    const { setErr } = useContext(Context);
 
     useEffect(() => taskService.getEntity(match.params._id)
         .then(x => {

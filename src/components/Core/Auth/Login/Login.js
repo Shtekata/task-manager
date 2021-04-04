@@ -9,7 +9,7 @@ const Login = () => {
     const [usernameMsg, setUsernameMsg] = useState('');
     const [userPassMsg, setUserPassMsg] = useState('');
 
-    const [, setUser, , setErr] = useContext(Context);
+    const { setUser, setErr, setInfo } = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -29,6 +29,7 @@ const Login = () => {
                 .then(x => {
                     e.target.reset();
                     setUser(x.username);
+                    setInfo(x.message);
                     history.push('/');
                 })
                 .catch(x => { setUser(x.username); setErr(x.message); history.push('/') });

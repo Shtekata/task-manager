@@ -12,7 +12,7 @@ const Register = () => {
     const [userPassMsg, setUserPassMsg] = useState('');
     const [userRePassMsg, setUserRePassMsg] = useState('');
 
-    const [, setUser,, setErr] = useContext(Context);
+    const { setUser, setErr, setInfo } = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -54,6 +54,7 @@ const Register = () => {
                 .then(x => {
                     e.target.reset();
                     setUser(x.username);
+                    setInfo(x.message);
                     history.push('/')
                 })
                 .catch(x => setErr(x.message));
