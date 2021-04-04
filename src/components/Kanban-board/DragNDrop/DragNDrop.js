@@ -7,7 +7,7 @@ const DragNDrop = ({ data }) => {
     const [list, setList] = useState([]);
     const [dragging, setDragging] = useState(false);
 
-    const [user, , err, setErr] = useContext(Context);
+    const [user, , , setErr] = useContext(Context);
     const history = useHistory();
 
     useEffect(() => {
@@ -173,6 +173,7 @@ const DragNDrop = ({ data }) => {
                 border-radius: 15px;
                 margin-bottom: 0.5rem;
                 background-color: antiquewhite;
+                outline: none;
             }
             .dnd-button:hover {
                 cursor: pointer;
