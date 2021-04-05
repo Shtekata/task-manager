@@ -5,7 +5,7 @@ const Aside = ({ labels, onAsideItemClick }) => {
     return (
         <aside className='aside'>
             {labels.map((x, i) =>
-                <NavLink key={i} to={`/${x[0]}`} className='aside-item' onClick={() => onAsideItemClick(i)}>{x[1]}</NavLink>
+                <NavLink key={i} to={`/${x[0]}`} className='aside-item' onClick={() => onAsideItemClick(x[1])}>{x[1]}</NavLink>
             )}
             <style jsx>{`
             .aside{

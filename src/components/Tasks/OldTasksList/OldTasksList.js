@@ -7,33 +7,31 @@ const OldTasksList = () => {
 
     const [tasks, setTasks] = useState([]);
     const [currentTasks, setCurrentTasks] = useState([]);
-    const [labels, setLabels] = useState([
-        ['aside/all', 'All'], ['aside/p-m-a', 'P-M-A'], ['aside/p-m-d', 'P-M-D'], ['aside/p-m-k', 'P-M-K'],
-        ['aside/p-m-l', 'P-M-L'], ['aside/p-m-n', 'P-M-N'], ['aside/p-m-s', 'P-M-S'], ['aside/p-m-t', 'P-M-T']
-    ]);
+    const [labels, setLabels] = useState([]);
 
     useEffect(() => {
         taskService.getEntities().then(x => {
             setTasks(x.entities);
             setCurrentTasks(x.entities);
+            setLabels([['aside/all', 'All'], ...x.entities.map(x => [`aside/${x.title}`, x.title])]);
         });
     }, []);
 
-    const onAsideItemClickApp = (id) => {
-        if (id===0) return setCurrentTasks(tasks);
-        const task = tasks.slice(id - 1, id);
+    const onAsideItemClickApp = (title) => {
+        if (title === 'All') return setCurrentTasks(tasks);
+        const task = tasks.filter(x => x.title === title);
         setCurrentTasks(task);
     };
 
     return (
         <div className='article'>
             <div className='task-list'>
-                <h1 className='title'>Some Articles</h1>
+                <h1 className='title'>Old Tasks</h1>
                 <div>
                     {currentTasks.map(x => <Task key={x._id} task={x} />)}
                 </div>
             </div>
-            <Aside onAsideItemClick={onAsideItemClickApp} path='aside' labels={labels} />
+            <Aside onAsideItemClick={onAsideItemClickApp} labels={labels} />
             <style jsx>{`
             .title {
                 text-align: center;
