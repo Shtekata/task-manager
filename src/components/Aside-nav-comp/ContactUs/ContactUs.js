@@ -1,7 +1,7 @@
 const ContactUs = () => (
     <div className='contact-us'>
         <div>
-            <h1>Contact Us Page</h1>
+            <h1 className='about-h1'>Contact Us Page</h1>
             <div>
                 <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
                 <form>
@@ -11,7 +11,7 @@ const ContactUs = () => (
             </div>
         </div>
         <style jsx>{`
-        h1{
+        .about-h1 {
             text-align: center;
             color: #234465;
             text-decoration: underline;

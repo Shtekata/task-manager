@@ -14,11 +14,15 @@ In the project, you can:
 
 - create a new task, if you are logged in.
 
-- move task in another category, if you are logged in.
+- move task in another category with keep pressed left mouse button, if you are logged in.
 
-- edit or delete task, when double click on the task, if you are logged in.
+- move task only one category left or right.
 
-- delete task, when double click on the task and press a delete button icon.
+- edit task, when double click on the task or on the corresponding button, if you are logged in.
+
+- view details of the task, when click on the details task button.
+
+- delete task, when click on the delete task button.
 
 - navigate to 'Old Tasks' view only if you logged in.
 
@@ -38,7 +42,7 @@ When you click over some task, you can receive additional information about a ta
 
 This app have responsive design and can use with mobile phone.
 
-Are used styled-jsx, useReducer, HOC
+Are used styled-jsx, useReducer, HOC's
 
 **Note: this is a free to use project!**
 

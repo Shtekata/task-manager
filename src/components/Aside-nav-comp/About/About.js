@@ -1,9 +1,9 @@
 const About = () => (
     <div className='about'>
-        <h1>About Page</h1>
+        <h1 className='about-h1'>About Page</h1>
        
          <style jsx>{`
-        h1{
+        .about-h1 {
             text-align: center;
             color: #234465;
             text-decoration: underline;

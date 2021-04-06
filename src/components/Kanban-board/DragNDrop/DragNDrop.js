@@ -9,6 +9,7 @@ const DragNDrop = () => {
     const [data] = useFetch({initialValue: [], render });
     const [list, setList] = useState([]);
     const [dragging, setDragging] = useState(false);
+    const [startItem, setStartItem] = useState(null);
 
     const [state, dispatch] = useContext(Context);
     const history = useHistory();
@@ -24,13 +25,15 @@ const DragNDrop = () => {
     const handleDragStart = (e, params) => {
         dragItem.current = params.cord;
         dragNode.current = e.target;
+        setStartItem({ i: params.cord.i });
         setTimeout(() => setDragging(true), 0);
         dragNode.current.addEventListener('dragend',
             () => handleDragEnd({ _id: params._id, col: params.cord.i, row: params.cord.ii }));
     };
 
     const handleDragEnter = (e, params) => {
-        if (currentItem.i !== params.i || currentItem.ii !== params.ii) {
+        let rowDiff = Math.abs(startItem.i - params.i);
+        if ((currentItem.i !== params.i || currentItem.ii !== params.ii) && (rowDiff === 1 || rowDiff === 0)) {
             setList(x => {
                 let newList = JSON.parse(JSON.stringify(x));
                 newList[params.i].items.splice(params.ii, 0, newList[currentItem.i].items.splice(currentItem.ii, 1)[0]);
@@ -52,6 +55,7 @@ const DragNDrop = () => {
         dragItem.current = null;
         dragNode.current = null;
         setDragging(false);
+        setStartItem(null);
     };
 
     const getStyles = (params) => {
