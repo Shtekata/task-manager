@@ -1,12 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as taskService from '../../../../services/taskService';
+import { Context } from '../../../Core/Context';
 
 const DetailsTask = ({match, location, history}) => {
     const [task, setTask] = useState({});
+    const [state, dispatch] = useContext(Context);
+
     useEffect(() => {
-        if (match.params._id) return taskService.getEntity({ _id: match.params._id }).then(x => setTask(x.entity));
+        if (match.params._id) {
+            dispatch({ type: 'isLoad', payload: true });
+            return taskService.getEntity({ _id: match.params._id }).then(x =>
+            { dispatch({ type: 'isLoad', payload: false }); setTask(x.entity) })
+        }
         else setTask(location.state.task);
     }, []);
+
     const onClickHandler = () => history.push('/');
     return (
         <section className="create">
@@ -24,6 +32,13 @@ const DetailsTask = ({match, location, history}) => {
                         <label htmlFor="description">Description</label>
                         <span className="input">
                             <p>{task.description}</p>
+                            <span className="actions"></span>
+                        </span>
+                    </div>
+                    <div className="field">
+                        <label htmlFor="solution">Solution</label>
+                        <span className="input">
+                            <p>{task.solution}</p>
                             <span className="actions"></span>
                         </span>
                     </div>

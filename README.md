@@ -24,6 +24,8 @@ In the project, you can:
 
 - move tasks only one category left or right, with keep pressed left mouse button.
 
+- move to a done category only if the task has a solution.
+
 - edit task, when double click on the task or on the corresponding button.
 
 - view details of the task, when click on the details task button.

@@ -23,7 +23,7 @@ const EditTask = ({ match, history }) => {
                 dispatch({ type: 'err', payload: x.message });
             });
     };
-
+    
     const onChangeHandler = (e) => {
         if (e.target.name === 'isPublic')
             return setTask(x => ({ ...x, isPublic: task.isPublic === 'on' ? '' : 'on' }))

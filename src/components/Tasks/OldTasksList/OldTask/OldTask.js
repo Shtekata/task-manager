@@ -2,7 +2,10 @@ const OldTask = ({ task: x }) => (
     <div className='task'>
         <img className='task-img' src="/skull.png" alt="skull" />
         <h2 className='task-title'>{x.title}</h2>
+        <h3 className='old-task-h3'>Description</h3>
         <p className='description'>{x.description}</p>
+        <h3 className='old-task-h3'>Solution</h3>
+        <p className='solution'>{x.solution}</p>
         <div className='task-div'>
             <div className="old-task-author">
                 <small>Author: </small> {x.creator.username}
@@ -32,6 +35,7 @@ const OldTask = ({ task: x }) => (
                 display: inline-block;
                 text-align: center;
                 width: 90%;
+                padding: 1.2rem 0 0 0;
             }
             .description {
                 word-wrap: break-word;
@@ -40,8 +44,15 @@ const OldTask = ({ task: x }) => (
                 margin: 1% auto;
                 ;
             }
+            .solution {
+                padding: 0 10px 1.5rem 10px;
+            }
             .old-task-author, .old-task-createdAt {
                 padding: .5rem;
+            }
+            .old-task-h3 {
+                text-align: left;
+                padding: 0 3rem;
             }
         `}</style>
     </div>

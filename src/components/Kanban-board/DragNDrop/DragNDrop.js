@@ -25,7 +25,7 @@ const DragNDrop = () => {
     const handleDragStart = (e, params) => {
         dragItem.current = params.cord;
         dragNode.current = e.target;
-        setStartItem({ i: params.cord.i });
+        setStartItem({ i: params.cord.i, done: params.done });
         setTimeout(() => setDragging(true), 0);
         dragNode.current.addEventListener('dragend',
             () => handleDragEnd({ _id: params._id, col: params.cord.i, row: params.cord.ii }));
@@ -34,6 +34,7 @@ const DragNDrop = () => {
     const handleDragEnter = (e, params) => {
         let rowDiff = Math.abs(startItem.i - params.i);
         if ((currentItem.i !== params.i || currentItem.ii !== params.ii) && (rowDiff === 1 || rowDiff === 0)) {
+            if (params.i === 2 && !startItem.done) return;
             setList(x => {
                 let newList = JSON.parse(JSON.stringify(x));
                 newList[params.i].items.splice(params.ii, 0, newList[currentItem.i].items.splice(currentItem.ii, 1)[0]);
@@ -109,7 +110,7 @@ const DragNDrop = () => {
                                 key={y._id}
                                 draggable
                                 className={dragging ? getStyles({ i, ii }) : "dnd-item"}
-                                onDragStart={(e) => handleDragStart(e, { cord: { i, ii }, _id: y._id })}
+                                onDragStart={(e) => handleDragStart(e, { cord: { i, ii }, _id: y._id, done: y.solution })}
                                 onDragEnter={dragging ? (e) => handleDragEnter(e, { i, ii }) : null}
                                 onDoubleClick={e => onDoubleClickHandler({ _id: y._id })}
                             >

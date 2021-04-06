@@ -25,11 +25,19 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
                             <span className="actions"></span>
                         </span>
                     </p>
+                     <p className="field">
+                        <label htmlFor="solution">Solution</label>
+                        <span className="input">
+                            <textarea rows="4" cols="45" type="text" name="solution" id="solution"
+                                placeholder="Solution" value={task.solution} onChange={onChangeHandler}></textarea>
+                            <span className="actions"></span>
+                        </span>
+                    </p>
                     <Message msg={descriptionMsg} />
                     <p className="field">
                         <label htmlFor="isPublic">Public</label>
                         <span className='span-checkbox'>
-                            <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' value={task.isPublic} checked={task.isPublic} onChange={onChangeHandler} />
+                            <input type="checkbox" className='input-checkbox' name="isPublic" id='isPublic' checked={task.isPublic} onChange={onChangeHandler} />
                             <span className="actions"></span>
                         </span>
                     </p>
