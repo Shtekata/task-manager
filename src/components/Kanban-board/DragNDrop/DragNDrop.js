@@ -76,8 +76,14 @@ const DragNDrop = () => {
 
     const onDeleteHandler = ({ _id, row }) => {
         if (!window.confirm('Are you sure you want to delete the task?')) return;
-        if (row !== 2) taskService.deleteEntity(_id)
+        if (row !== 2) return taskService.deleteEntity(_id)
             .then(x => render ? setRender(false) : setRender(true))
+            .catch(x => {
+                !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
+                dispatch({ type: 'err', payload: x.message });
+            });
+        taskService.partiallyEditEntity({ _id, isDeleted: true })
+         .then(x => render ? setRender(false) : setRender(true))
             .catch(x => {
                 !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
                 dispatch({ type: 'err', payload: x.message });

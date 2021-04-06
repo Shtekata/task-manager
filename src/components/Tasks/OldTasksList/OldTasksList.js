@@ -10,7 +10,7 @@ const OldTasksList = () => {
     const [labels, setLabels] = useState([]);
 
     useEffect(() => {
-        taskService.getEntities().then(x => {
+        taskService.getEntities('?isDeleted=true').then(x => {
             setTasks(x.entities);
             setCurrentTasks(x.entities);
             setLabels([['aside/all', 'All'], ...x.entities.map(x => [`aside/${x.title}`, x.title])]);

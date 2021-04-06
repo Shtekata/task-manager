@@ -1,10 +1,15 @@
 const OldTask = ({ task: x }) => (
     <div className='task'>
         <img className='task-img' src="/skull.png" alt="skull" />
-        <h2 className='task-title'>{ x.title }</h2>
+        <h2 className='task-title'>{x.title}</h2>
         <p className='description'>{x.description}</p>
         <div className='task-div'>
-            <small>Author: </small> {x.creator.username}
+            <div className="old-task-author">
+                <small>Author: </small> {x.creator.username}
+            </div>
+            <div className="old-task-createdAt">
+                <small className='old-task-createdAt'>Created at: </small> {x.createdAt}
+            </div>
         </div>
         <style jsx>{`
             .task {
@@ -18,10 +23,10 @@ const OldTask = ({ task: x }) => (
                 padding: 3px 0 0 3px;
             }
             .task-div{
-                text-align: right;
-                text-decoration: underline;
                 padding-right: 1%;
                 margin-bottom: 0.5%;
+                display: flex;
+                justify-content: space-between;
             }
             .task-title{
                 display: inline-block;
@@ -34,6 +39,9 @@ const OldTask = ({ task: x }) => (
                 font-style: italic;
                 margin-bottom: 0.5%;
                 ;
+            }
+            .old-task-author, .old-task-createdAt {
+                padding: .5rem;
             }
         `}</style>
     </div>

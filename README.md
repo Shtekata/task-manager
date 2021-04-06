@@ -38,7 +38,7 @@ When you click over some task, you can receive additional information about a ta
 
 This app have responsive design and can use with mobile phone.
 
-Are used styled-jsx, useReducer
+Are used styled-jsx, useReducer, HOC
 
 **Note: this is a free to use project!**
 

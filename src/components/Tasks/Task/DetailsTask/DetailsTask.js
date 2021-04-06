@@ -4,7 +4,7 @@ import * as taskService from '../../../../services/taskService';
 const DetailsTask = ({match, location, history}) => {
     const [task, setTask] = useState({});
     useEffect(() => {
-        if (match.params._id) return taskService.getEntity(match.params._id).then(x => setTask(x.entity));
+        if (match.params._id) return taskService.getEntity({ _id: match.params._id }).then(x => setTask(x.entity));
         else setTask(location.state.task);
     }, []);
     const onClickHandler = () => history.push('/');

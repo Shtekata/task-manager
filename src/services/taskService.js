@@ -32,32 +32,53 @@ const createEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/`, {
     })
     .then(x => errorHandler(x));
 
-const getEntities = () => fetch(`${REACT_APP_API_URL}/tasks/`, {
-    method: 'GET',
-    headers: headers()
-})
+const getEntities = (x = '') => {
+    const query = x ? x : '';
+    const url = `${REACT_APP_API_URL}/tasks${query}`;
+    return fetch(url, {
+        method: 'GET',
+        headers: headers()
+    })
     .then(x => x.json())
     .then(x => {
         if (x.token !== undefined) localStorage.setItem('token', x.token);
-         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        if (x.username !== undefined) { localStorage.setItem('username', x.username) };
         return x
     })
-    .then(x => errorHandler(x));
-
-const getEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x}`, {
-    method: 'GET',
-    headers: headers()
-})
-    .then(x => x.json())
-    .then(x => {
-        if (x.token !== undefined) localStorage.setItem('token', x.token);
-         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
-        return x
+    .then(x => errorHandler(x))
+};
+const getEntity = (x) => {
+    const query = x.query ? x.query : '';
+    const url = `${REACT_APP_API_URL}/tasks/${x._id}${query}`;
+    return fetch(url, {
+        method: 'GET',
+        headers: headers()
     })
-    .then(x => errorHandler(x));
+        .then(x => x.json())
+        .then(x => {
+            if (x.token !== undefined) localStorage.setItem('token', x.token);
+            if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+            return x
+        })
+        .then(x => errorHandler(x))
+};
+    
 
 const editEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
     method: 'PUT',
+    headers: headers(),
+    body: JSON.stringify(x)
+})
+    .then(x => x.json())
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        return x
+    })
+    .then(x => errorHandler(x));
+
+const partiallyEditEntity = (x) => fetch(`${REACT_APP_API_URL}/tasks/${x._id}`, {
+    method: 'PATCH',
     headers: headers(),
     body: JSON.stringify(x)
 })
@@ -110,6 +131,7 @@ export {
     getEntity,
     createEntity,
     editEntity,
+    partiallyEditEntity,
     shiftEntity,
     deleteEntity
 }

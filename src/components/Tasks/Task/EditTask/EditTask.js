@@ -7,7 +7,7 @@ const EditTask = ({ match, history }) => {
     const [task, setTask] = useState({});
     const [state, dispatch] = useContext(Context);
 
-    useEffect(() => taskService.getEntity(match.params._id)
+    useEffect(() => taskService.getEntity({ _id: match.params._id })
         .then(x => {
             x.entity.isPublic = x.entity.isPublic === true ? 'on' : '';
             setTask(x.entity)

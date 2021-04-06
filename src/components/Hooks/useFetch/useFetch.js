@@ -13,13 +13,13 @@ const useFetch = ({ initialValue, render }) => {
                 x = x === undefined ? { entities: [] } : x;
                 return [{
                     title: 'To Do',
-                    items: x.entities.filter(x => x.isToDo === true)
+                    items: x.entities.filter(x => x.isToDo === true && x.isDeleted === false)
                 }, {
                     title: 'In Progress',
-                    items: x.entities.filter(x => x.isInProgress === true)
+                    items: x.entities.filter(x => x.isInProgress === true && x.isDeleted === false)
                 }, {
                     title: 'Done',
-                    items: x.entities.filter(x => x.isDone === true)
+                    items: x.entities.filter(x => x.isDone === true && x.isDeleted === false)
                 }];
             })
             .then(x => {
