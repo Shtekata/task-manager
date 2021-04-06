@@ -8,7 +8,8 @@ const useFetch = ({ initialValue, render }) => {
 
     useEffect(() => {
         dispatch({ type: 'isLoad' });
-        taskService.getEntities()
+        const query = state.user ? '' : '?isPublic=true';
+        taskService.getEntities(query)
             .then(x => {
                 x = x === undefined ? { entities: [] } : x;
                 return [{
@@ -30,7 +31,7 @@ const useFetch = ({ initialValue, render }) => {
                 !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
                 dispatch({ type: 'err', payload: x.message });
             });
-    }, [render]);
+    }, [render, state.user]);
 
     return [tasks];
 };

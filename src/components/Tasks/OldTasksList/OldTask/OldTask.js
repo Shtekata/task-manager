@@ -8,7 +8,7 @@ const OldTask = ({ task: x }) => (
                 <small>Author: </small> {x.creator.username}
             </div>
             <div className="old-task-createdAt">
-                <small className='old-task-createdAt'>Created at: </small> {x.createdAt}
+                <small className='old-task-createdAt'>Created at: </small> {`${x.createdAt.slice(0,10)} ${x.createdAt.slice(11,19)}`}
             </div>
         </div>
         <style jsx>{`
@@ -37,7 +37,7 @@ const OldTask = ({ task: x }) => (
                 word-wrap: break-word;
                 padding: 0 10px;
                 font-style: italic;
-                margin-bottom: 0.5%;
+                margin: 1% auto;
                 ;
             }
             .old-task-author, .old-task-createdAt {

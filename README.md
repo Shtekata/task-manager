@@ -2,29 +2,37 @@
 
 This project is on https://shtekata-task-manager.herokuapp.com/.
 
-## Available Actions
+## Available Actions Guest Users
 
 In the project, you can:
 
 - register, but you have some validation properties.
 
-- login.
+- login, if you already registered.
+
+- view all public tasks.
+
+## Available Actions Logged In Users
+
+In the project, you can:
 
 - logout.
 
-- create a new task, if you are logged in.
+- view all tasks.
 
-- move task in another category with keep pressed left mouse button, if you are logged in.
+- create a new task.
 
-- move task only one category left or right.
+- move tasks only one category left or right, with keep pressed left mouse button.
 
-- edit task, when double click on the task or on the corresponding button, if you are logged in.
+- edit task, when double click on the task or on the corresponding button.
 
 - view details of the task, when click on the details task button.
 
 - delete task, when click on the delete task button.
 
-- navigate to 'Old Tasks' view only if you logged in.
+- navigate to 'Old Tasks' view.
+
+- delete tasks.
 
 ### Additional Clarifications
 
@@ -34,15 +42,13 @@ There you can add additional information about you.
 
 Оf course there is also a page for wrong paths.
 
-If you delete task in 'Done' category, this task go to 'Old Tasks' view.
+Deleted tasks in 'Done' category goes to 'Old Tasks' view.
 
 In 'Old Tasks' view are all successfully finished tasks.
 
-When you click over some task, you can receive additional information about a task.
+This app have responsive design and can be use with mobile phone.
 
-This app have responsive design and can use with mobile phone.
-
-Are used styled-jsx, useReducer, HOC's
+Are used styled-jsx, useReducer, HOC's, protected guards,
 
 **Note: this is a free to use project!**
 
