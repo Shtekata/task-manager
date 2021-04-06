@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as taskService from '../../../services/taskService';
+import { Context } from '../../Core/Context';
 import Aside from '../../Shared/Aside';
 import Task from './OldTask';
 
@@ -9,12 +10,16 @@ const OldTasksList = () => {
     const [currentTasks, setCurrentTasks] = useState([]);
     const [labels, setLabels] = useState([]);
 
+    const [state, dispatch] = useContext(Context);
+
+
     useEffect(() => {
+        dispatch({ type: 'isLoad', payload: true });
         taskService.getEntities('?isDeleted=true').then(x => {
             setTasks(x.entities);
-            console.log(x.entities)
             setCurrentTasks(x.entities);
             setLabels([['aside/all', 'All'], ...x.entities.map(x => [`aside/${x.title}`, x.title])]);
+            dispatch({ type: 'isLoad', payload: false });
         });
     }, []);
 

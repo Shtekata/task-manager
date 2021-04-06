@@ -12,7 +12,7 @@ export const Provider = props => {
             case 'err': return { ...state, err: state.err = action.payload };
             case 'info': return { ...state, info: state.info = action.payload };
             case 'time': return { ...state, time: state.time = action.payload };
-            case 'isLoad': return { ...state, isLoad: state.isLoad = state.isLoad ? false : true };
+            case 'isLoad': return { ...state, isLoad: state.isLoad = action.payload };
             default: return { ...state, err: state.err = 'Wrong use of reducer' };
         }
     }
