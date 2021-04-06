@@ -1,9 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from 'react';
+import * as taskService from '../../../../services/taskService';
 
-const DetailsTask = ({location, history}) => {
-
+const DetailsTask = ({match, location, history}) => {
+    const [task, setTask] = useState({});
+    useEffect(() => {
+        if (match.params._id) return taskService.getEntity(match.params._id).then(x => setTask(x.entity));
+        else setTask(location.state.task);
+    }, []);
     const onClickHandler = () => history.push('/');
-    const task = location.state.task;
     return (
         <section className="create">
             <form>
@@ -12,7 +16,7 @@ const DetailsTask = ({location, history}) => {
                     <div className="field">
                         <label htmlFor="title">Title</label>
                         <span className="input">
-                            <p>{task.title}</p>
+                            <p className='title'>{task.title}</p>
                             <span className="actions"></span>
                         </span>
                     </div>
@@ -34,6 +38,11 @@ const DetailsTask = ({location, history}) => {
                 </fieldset>
             </form>
             <style jsx>{`
+            .title {
+                margin: auto;
+                font-weight: bold;
+                font-size: 30px;
+            }
             .create{
                 height: 100%;
                 display: flex;

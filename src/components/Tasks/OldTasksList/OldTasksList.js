@@ -33,6 +33,9 @@ const OldTasksList = () => {
             </div>
             <Aside onAsideItemClick={onAsideItemClickApp} labels={labels} />
             <style jsx>{`
+            .task-list {
+               width: 100%;
+            }
             .title {
                 text-align: center;
                 color: #234465;

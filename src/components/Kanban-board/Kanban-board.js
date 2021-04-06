@@ -1,5 +1,4 @@
 import DragNDrop from "./DragNDrop";
-import { Fragment } from "react";
 
 const KanbanBoard = () => {
     return (

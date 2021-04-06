@@ -5,20 +5,23 @@ import { Context } from "../../../Core/Context";
 
 const EditTask = ({ match, history }) => {
     const [task, setTask] = useState({});
-    const { setErr, setUser } = useContext(Context);
+    const [state, dispatch] = useContext(Context);
 
     useEffect(() => taskService.getEntity(match.params._id)
         .then(x => {
             x.entity.isPublic = x.entity.isPublic === true ? 'on' : '';
             setTask(x.entity)
         })
-        .catch(x => setErr(x.message)), [match]);
+        .catch(x => dispatch({ type: 'err', payload: x.message })), [match]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         taskService.editEntity(task)
             .then(x => { e.target.reset(); history.push({ pathname: `/tasks/details/${task._id}`, state: { task: x.entity } }) })
-            .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
+            .catch(x => {
+                 !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
+                dispatch({ type: 'err', payload: x.message });
+            });
     };
 
     const onChangeHandler = (e) => {

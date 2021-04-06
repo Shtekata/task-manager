@@ -7,15 +7,17 @@ import NavLogout from './NavLogout';
 
 const Header = () => {
 
-  const { user, err, setErr, isLoad, info, setInfo, time } = useContext(Context);
+  const [state, dispatch] = useContext(Context);
   
   useEffect(() => {
-    if (isLoad || err || info) setTimeout(() => { setInfo(null); setErr(null) }, time);
-  }, [isLoad, info, err]);
+    if (state.isLoad || state.err || state.info) setTimeout(() => {
+      dispatch({ type: 'info', payload: null }); dispatch({ type: 'err', payload: null })
+    }, state.time);
+  }, [state.isLoad, state.info, state.err]);
 
   return (
     <Fragment>
-      <Notification type={isLoad ? 'l' : info ? 'i' : err ? 'e' : null} msg={info ? info : err ? err : null} />
+      <Notification type={state.isLoad ? 'l' : state.info ? 'i' : state.err ? 'e' : null} msg={state.info ? state.info : state.err ? state.err : null} />
       <nav className='navigation'>
         <div className='header-div'>
           <div className="header header-side header-div header-left">
@@ -28,7 +30,7 @@ const Header = () => {
             <h1>Manager</h1>
           </div>
           <div className="header header-side header-div header-right">
-            {user
+            {state.user
               ? <NavLogout />
               : <NavLogin />
             }

@@ -9,7 +9,7 @@ const Login = () => {
     const [usernameMsg, setUsernameMsg] = useState('');
     const [userPassMsg, setUserPassMsg] = useState('');
 
-    const { setUser, setErr, setInfo } = useContext(Context);
+    const [state, dispatch] = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -28,11 +28,14 @@ const Login = () => {
             authService.login({ username: e.target.username.value, password: e.target.password.value })
                 .then(x => {
                     e.target.reset();
-                    setUser(x.username);
-                    setInfo(x.message);
+                    dispatch({ type: 'user', payload: x.username });
+                    dispatch({ type: 'info', payload: x.message });
                     history.push('/');
                 })
-                .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message); history.push('/') });
+                .catch(x => {
+                    !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
+                    dispatch({ type: 'err', payload: x.message }); history.push('/')
+                });
         };
     };
 

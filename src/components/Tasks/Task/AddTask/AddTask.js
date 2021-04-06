@@ -5,13 +5,16 @@ import { Context } from "../../../Core/Context";
 
 const AddTask = ({history}) => {
     const [task, setTask] = useState({});
-    const { setErr, setUser } = useContext(Context);
+    const [state, dispatch] = useContext(Context);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         taskService.createEntity(task)
             .then(x => { e.target.reset(); history.push('/') })
-            .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
+            .catch(x => {
+                !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
+                dispatch({ type: 'err', payload: x.message });
+            });
     };
 
     const onChangeHandler = (e) => {

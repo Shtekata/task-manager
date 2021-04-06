@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Route, Link, NavLink, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Aside from '../../Shared/Aside';
 import About from '../../Aside-nav-comp/About';
 import ContactUs from '../../Aside-nav-comp/ContactUs';
@@ -19,15 +19,11 @@ class Body extends Component{
                 ['about', 'About'], ['musical', 'Musical'], ['contact-us', 'Contact Us']]
         }
     }
-    
-    componentDidMount() { };
-
-    onAsideItemClickApp(id) { };
 
     render() {
         return (
             <div className='container'>
-                <Aside onAsideItemClick={this.onAsideItemClickApp.bind(this)} labels={this.state.labels}/>
+                <Aside labels={this.state.labels} onAsideItemClick={() => {}}/>
                 <main className='main'>
                     <Switch>
                         <Route path='/' exact> <KanbanBoard /> </Route>

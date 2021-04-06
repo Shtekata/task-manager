@@ -3,11 +3,11 @@ import * as taskService from '../../../services/taskService';
 import { Context } from "../../Core/Context";
 
 const useFetch = ({ initialValue, render }) => {
-    const [state, setState] = useState(initialValue);
-    const { setUser, setErr, setIsLoad } = useContext(Context);
+    const [tasks, setTasks] = useState(initialValue);
+    const [state, dispatch] = useContext(Context);
 
     useEffect(() => {
-        setIsLoad(true);
+        dispatch({ type: 'isLoad' });
         taskService.getEntities()
             .then(x => {
                 x = x === undefined ? { entities: [] } : x;
@@ -23,12 +23,15 @@ const useFetch = ({ initialValue, render }) => {
                 }];
             })
             .then(x => {
-                setState(x)
-                setIsLoad(false)
+                setTasks(x)
+                dispatch({ type: 'isLoad' });
             })
-            .catch(x => { !x.username ? setUser(null) : setUser(x.username); setErr(x.message) });
+            .catch(x => {
+                !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
+                dispatch({ type: 'err', payload: x.message });
+            });
     }, [render]);
 
-    return [state];
+    return [tasks];
 };
 export default useFetch;

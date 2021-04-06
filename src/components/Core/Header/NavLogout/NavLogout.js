@@ -7,19 +7,23 @@ import * as authService from '../../../../services/authService';
 const NavLogout = () => {
 
     const history = useHistory();
-    const { user, setUser, setErr, setInfo } = useContext(Context);
+    const [state, dispatch] = useContext(Context);
 
     const logoutClickHandler = (e) => {
         e.preventDefault();
         authService.logout()
-            .then(x => { setUser(null); setInfo(x.message); history.push('/') })
-            .catch(x => { setErr(x.message); setUser(null); history.push('/') });
+            .then(x => {
+                dispatch({ type: 'user', payload: null }); dispatch({ type: 'info', payload: x.message }); history.push('/')
+            })
+            .catch(x => {
+                dispatch({ type: 'err', payload: x.message }); dispatch({ type: 'user', payload: null }); history.push('/')
+            });
     }
 
     return (
         <Fragment>
             <Link to='#' className='header-item' onClick={logoutClickHandler}>Logout</Link>
-            <Link to='#' className='header-item'>{user}</Link>
+            <Link to='#' className='header-item'>{state.user}</Link>
         </Fragment>
     )
 };
