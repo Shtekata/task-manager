@@ -12,13 +12,14 @@ import DetailsTask from '../../Tasks/Task/DetailsTask/DetailsTask';
 import OldTasksList from '../../Tasks/OldTasksList';
 import { Context } from '../Context';
 import GuardedRoute from '../../Hooks/GuardedRoot/GuardedRoot';
+import Error404 from '../../Errors/Error404.js';
 
 class Body extends Component{
     constructor(props) {
         super(props);
         this.state = {
             labels: [['home', 'Home'], ['tasks/add', 'Add Task'], ['old-tasks', 'Old Tasks'],
-            ['about', 'About'], ['musical', 'Relax'], ['contact-us', 'Contact Us']]
+            ['about', 'About'], ['musical', 'Relax'], ['contact-us', 'Contact Us'], ['ala-bala', '404']]
         }
     }
     
@@ -45,7 +46,7 @@ class Body extends Component{
                         <GuardedRoute path='/old-tasks' component={OldTasksList} auth={!!this.context[0].user} />
                         <GuardedRoute path='/tasks/add' component={AddTask} auth={!!this.context[0].user} />
                         <GuardedRoute path='/tasks/edit/:_id' component={EditTask} auth={!!this.context[0].user} />
-                        <Route render={(props) => <h1 {...props}>Error Page =&gt; :)</h1>} />
+                        <Route component={Error404} />
                     </Switch>
                 </main>
                 <style jsx>{`

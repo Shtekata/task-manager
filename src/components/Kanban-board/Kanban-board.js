@@ -10,6 +10,9 @@ const KanbanBoard = () => {
                 background-color: thistle;
                 font-size: calc(10px + 2vmin);
                 height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
             `}</style>
         </div>

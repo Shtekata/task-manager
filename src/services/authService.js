@@ -2,15 +2,13 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const errorHandler = (x) => {
     if (x.type === 'ERROR') {
-        if (x.token !== undefined) localStorage.setItem('token', x.token);
-        else localStorage.removeItem('token');
-        if (x.username) {
-            localStorage.setItem('username', x.username);
-            throw ({ message: x.msg, username: x.username });
-        } else {
-            localStorage.removeItem('username');
-            throw ({ message: x.msg })
-        };
+        x.token !== undefined ? localStorage.setItem('token', x.token) : localStorage.removeItem('token');
+        let returnErr = { message: x.msg };
+        if (x.username) { returnErr.username = x.username; localStorage.setItem('username', x.username) }
+        else localStorage.removeItem('username');
+        if (x.userId) { returnErr.userId = x.userId; localStorage.setItem('userId', x.userId) }
+        else localStorage.removeItem('userId');
+        throw returnErr;
     };
     return x;
 }
@@ -28,6 +26,7 @@ const register = (x) => fetch(`${REACT_APP_API_URL}/auth/register/`, {
     .then(x => {
         if (x.token !== undefined) localStorage.setItem('token', x.token);
         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        if (x.userId !== undefined) { localStorage.setItem('userId', x.userId) };
         return x
     })
     .then(x => errorHandler(x));
@@ -41,6 +40,7 @@ const login = (x) => fetch(`${REACT_APP_API_URL}/auth/login/`, {
     .then(x => {
         if (x.token !== undefined) localStorage.setItem('token', x.token);
         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        if (x.userId !== undefined) { localStorage.setItem('userId', x.userId) };
         return x
     })
     .then(x => errorHandler(x));;
@@ -50,7 +50,9 @@ const logout = (x) => fetch(`${REACT_APP_API_URL}/auth/logout`, {
     headers: headers()
 })
     .then(x => x.json())
-    .then(x => { localStorage.removeItem('username'); localStorage.removeItem('token'); return x })
+    .then(x => {
+        localStorage.removeItem('username'); localStorage.removeItem('token'); localStorage.removeItem('userId'); return x
+    })
     .then(x => errorHandler(x));
 
 export {
