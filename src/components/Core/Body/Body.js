@@ -18,7 +18,7 @@ class Body extends Component{
         super(props);
         this.state = {
             labels: [['home', 'Home'], ['tasks/add', 'Add Task'], ['old-tasks', 'Old Tasks'],
-            ['about', 'About'], ['musical', 'Musical'], ['contact-us', 'Contact Us']]
+            ['about', 'About'], ['musical', 'Relax'], ['contact-us', 'Contact Us']]
         }
     }
     

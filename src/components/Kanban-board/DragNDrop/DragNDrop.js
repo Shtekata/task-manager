@@ -34,7 +34,7 @@ const DragNDrop = () => {
     const handleDragEnter = (e, params) => {
         let rowDiff = Math.abs(startItem.i - params.i);
         if ((currentItem.i !== params.i || currentItem.ii !== params.ii) && (rowDiff === 1 || rowDiff === 0)) {
-            if (params.i === 2 && !startItem.done) return dispatch({ type: 'info', payload: 'You have to write solution!' });
+            if (params.i === 2 && !startItem.done) return dispatch({ type: 'info', payload: 'You have to write solution first!' });
             setList(x => {
                 let newList = JSON.parse(JSON.stringify(x));
                 newList[params.i].items.splice(params.ii, 0, newList[currentItem.i].items.splice(currentItem.ii, 1)[0]);
