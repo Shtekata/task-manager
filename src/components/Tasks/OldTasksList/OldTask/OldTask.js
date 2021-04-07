@@ -6,12 +6,21 @@ const OldTask = ({ task: x }) => (
         <p className='description'>{x.description}</p>
         <h3 className='old-task-h3'>Solution</h3>
         <p className='solution'>{x.solution}</p>
+        <h3 className='isPublic'>Public: {x.isPublic?'Public Task':'Private Task!'}</h3>
         <div className='task-div'>
             <div className="old-task-author">
                 <small>Author: </small> {x.creator.username}
             </div>
             <div className="old-task-createdAt">
-                <small className='old-task-createdAt'>Created at: </small> {`${x.createdAt.slice(0,10)} ${x.createdAt.slice(11,19)}`}
+                <small>Created at: </small> {`${x.createdAt.slice(0,10)} ${x.createdAt.slice(11,19)}`}
+            </div>
+        </div>
+        <div className='task-div'>
+            <div className="old-task-executor">
+                <small>Executor: </small> {x.executor.username}
+            </div>
+            <div className="old-task-executedOn">
+                <small>Executed on: </small> {`${x.executedOn.slice(0,10)} ${x.executedOn.slice(11,19)}`}
             </div>
         </div>
         <style jsx>{`
@@ -45,14 +54,21 @@ const OldTask = ({ task: x }) => (
                 ;
             }
             .solution {
-                padding: 0 10px 1.5rem 10px;
+                padding: 0 10px 1rem 10px;
             }
             .old-task-author, .old-task-createdAt {
-                padding: .5rem;
+                padding: 1rem;
+            }
+            .old-task-executor, .old-task-executedOn {
+                padding: 1rem 1rem 2rem 1rem;
             }
             .old-task-h3 {
                 text-align: left;
                 padding: 0 3rem;
+            }
+            .isPublic {
+                text-align: left;
+                margin: .5rem 0 1rem 3rem;
             }
         `}</style>
     </div>

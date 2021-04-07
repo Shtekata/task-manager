@@ -87,7 +87,7 @@ const DragNDrop = () => {
                 !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
                 dispatch({ type: 'err', payload: x.message });
             });
-        taskService.partiallyEditEntity({ _id, isDeleted: true })
+        taskService.partiallyEditEntity({ _id, isDeleted: true, user: state.user })
          .then(x => render ? setRender(false) : setRender(true))
             .catch(x => {
                 !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });

@@ -42,7 +42,6 @@ class Body extends Component{
                         <Route path='/about' component={About} />
                         <Route path='/musical' component={Music} />
                         <Route path='/contact-us' component={ContactUs} />
-                        <Route path='/aside/:id' component={OldTasksList} />
                         <GuardedRoute path='/old-tasks' component={OldTasksList} auth={!!this.context[0].user} />
                         <GuardedRoute path='/tasks/add' component={AddTask} auth={!!this.context[0].user} />
                         <GuardedRoute path='/tasks/edit/:_id' component={EditTask} auth={!!this.context[0].user} />

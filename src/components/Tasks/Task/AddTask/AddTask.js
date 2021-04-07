@@ -13,6 +13,7 @@ const AddTask = ({history}) => {
             .then(x => { e.target.reset(); history.push('/') })
             .catch(x => {
                 !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
+                if(x.message.includes('E11000 duplicate key error')) return dispatch({type:'info',payload:'The Title is already in use! Choose a different Title.'})
                 dispatch({ type: 'err', payload: x.message });
             });
     };

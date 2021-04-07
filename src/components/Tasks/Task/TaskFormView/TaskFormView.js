@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import Message from "../../../Errors/Message";
 
-const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, onChangeHandler }) => {
+const TaskFormView = ({ type, task, titleMsg, descriptionMsg, solutionMsg, onSubmitHandler, onChangeHandler }) => {
     const history = useHistory();
     const backToHome = () => history.push('/');
     return (
@@ -25,6 +25,8 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
                             <span className="actions"></span>
                         </span>
                     </p>
+                    <Message msg={descriptionMsg} />
+                    {type ?
                      <p className="field">
                         <label htmlFor="solution">Solution</label>
                         <span className="input">
@@ -32,8 +34,8 @@ const TaskFormView = ({ type, task, titleMsg, descriptionMsg, onSubmitHandler, o
                                 placeholder="Solution" value={task.solution} onChange={onChangeHandler}></textarea>
                             <span className="actions"></span>
                         </span>
-                    </p>
-                    <Message msg={descriptionMsg} />
+                    </p> : true}
+                    <Message msg={solutionMsg} />
                     <p className="field">
                         <label htmlFor="isPublic">Public</label>
                         <span className='span-checkbox'>

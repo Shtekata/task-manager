@@ -7,13 +7,13 @@ const DetailsTask = ({match, location, history}) => {
     const [state, dispatch] = useContext(Context);
 
     useEffect(() => {
-        if (match.params._id) {
+        if (match.params._id && !task.title) {
             dispatch({ type: 'isLoad', payload: true });
             return taskService.getEntity({ _id: match.params._id }).then(x =>
             { dispatch({ type: 'isLoad', payload: false }); setTask(x.entity) })
         }
-        else setTask(location.state.task);
-    }, []);
+        else if(!task.title) setTask(location.state.task);
+    }, [task]);
 
     const onClickHandler = () => history.push('/');
     return (
