@@ -46,7 +46,7 @@ There you can add additional information about you.
 
 Deleted tasks in 'Done' category goes to 'Old Tasks' view.
 
-In 'Old Tasks' view are all successfully finished tasks.
+In 'Old Tasks' view are all successfully finished tasks, with solution, executor and execution time.
 
 This app have responsive design and can be use with mobile phone.
 
