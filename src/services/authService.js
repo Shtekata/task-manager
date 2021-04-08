@@ -55,8 +55,26 @@ const logout = (x) => fetch(`${REACT_APP_API_URL}/auth/logout`, {
     })
     .then(x => errorHandler(x));
 
+const getUser = (x) => fetch(`${REACT_APP_API_URL}/auth/${x}`, {
+    method: 'GET',
+    headers: headers(),
+})
+    .then(x => {
+        return x.json();
+    })
+    .then(x => {
+        if (x.token !== undefined) localStorage.setItem('token', x.token);
+        if (x.username !== undefined) { localStorage.setItem('username', x.username) };
+        if (x.userId !== undefined) { localStorage.setItem('userId', x.userId) };
+        return x
+    })
+    .then(x => {
+        return errorHandler(x)
+    });
+
 export {
     register,
     login,
     logout,
+    getUser
 }

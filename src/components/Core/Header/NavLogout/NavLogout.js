@@ -23,7 +23,7 @@ const NavLogout = () => {
     return (
         <Fragment>
             <Link to='#' className='header-item' onClick={logoutClickHandler}>Logout</Link>
-            <Link to='`/auth/profile/${state.userId}`' className='header-item'>{state.user}</Link>
+            <Link to={`/auth/profile/${state.userId}`} className='header-item'>{state.user}</Link>
         </Fragment>
     )
 };

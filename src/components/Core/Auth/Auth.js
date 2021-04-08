@@ -7,7 +7,7 @@ const Auth = () => (
     <Switch>
         <Route path='/auth/login'><Login /></Route>
         <Route path='/auth/register'><Register /></Route>
-        <Route path='/auth/profile/:id'><Profile /></Route>
+        <Route path='/auth/profile/:_id'><Profile /></Route>
     </Switch>
 );
 export default Auth;
