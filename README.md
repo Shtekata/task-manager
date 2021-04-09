@@ -50,7 +50,7 @@ In 'Old Tasks' view are all successfully finished tasks, with solution, executor
 
 This app have responsive design and can be use with mobile phone.
 
-Are used styled-jsx, useReducer, HOC's, protected guards,
+Are used styled-jsx, useReducer, HOC(guarded routes), Hook(using fetch), deployed on Heroku, using Formik
 
 **Note: this is a free to use project!**
 
