@@ -11,7 +11,7 @@ import EditTask from '../../Tasks/Task/EditTask/EditTask';
 import DetailsTask from '../../Tasks/Task/DetailsTask/DetailsTask';
 import OldTasksList from '../../Tasks/OldTasksList';
 import { Context } from '../Context';
-import GuardedRoute from '../../Hooks/GuardedRoot/GuardedRoot';
+import GuardedRoute from '../../Hocs/GuardedRoot';
 import Error404 from '../../Errors/Error404.js';
 
 class Body extends Component{
