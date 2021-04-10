@@ -17,7 +17,6 @@ const OldTasksList = () => {
         dispatch({ type: 'isLoad', payload: true });
         taskService.getEntities('?isDeleted=true').then(x => {
             setTasks(x.entities);
-            console.log(currentTasks.length)
             if (currentTasks.length === 0) setCurrentTasks(x.entities);
             setLabels([['old-tasks/all', 'All'], ...x.entities.map(x => [`old-tasks/${x.title}`, x.title])]);
             dispatch({ type: 'isLoad', payload: false });
