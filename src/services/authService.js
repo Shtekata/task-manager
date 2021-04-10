@@ -2,6 +2,10 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const errorHandler = (x) => {
     if (x.type === 'ERROR') {
+        if (x.msg?.includes('E11000 duplicate key error collection: task-manager.users index: username_1'))
+            x.msg = 'Username is already in use!';
+        if (x.msg?.includes('E11000 duplicate key error collection: task-manager.users index: email_1'))
+            x.msg = 'Email is already in use!';
         x.token !== undefined ? localStorage.setItem('token', x.token) : localStorage.removeItem('token');
         let returnErr = { message: x.msg };
         if (x.username) { returnErr.username = x.username; localStorage.setItem('username', x.username) }

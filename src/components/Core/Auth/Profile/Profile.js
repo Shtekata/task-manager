@@ -113,7 +113,9 @@ const Profile = () => {
                     })
                         .catch(x => {
                             !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
-                            dispatch({ type: 'err', payload: x.message }); history.push('/');
+                            if(x.message==='Username is already in use!'||x.message==='Email is already in use!')dispatch({ type: 'info', payload: x.message });
+                            else dispatch({ type: 'err', payload: x.message });
+                            history.push('/');
                         });
                 }}
             >

@@ -27,6 +27,8 @@ export const Provider = props => {
     useEffect(() => {
         const localUser = localStorage.getItem('username');
         if (localUser !== 'undefined') dispatch({ type: 'user', payload: localUser });
+        const localUserEmail = localStorage.getItem('email');
+        if (localUserEmail !== 'undefined') dispatch({ type: 'email', payload: localUserEmail });
         const localUserId = localStorage.getItem('userId');
         if (localUserId !== 'undefined') dispatch({ type: 'userId', payload: localUserId });
     }, []);
