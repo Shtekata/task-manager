@@ -26,7 +26,7 @@ const About = () => (
         <p className='about-p'>Deleted tasks in 'Done' category goes to 'Old Tasks' view.</p>
         <p className='about-p'>In 'Old Tasks' view are all successfully finished tasks, with solution, executor and execution time.</p>
         <p className='about-p'>This app have responsive design and can be use with mobile phone.</p>
-        <p className='about-p'>Are used styled-jsx, Formik, Yup, useReducer, HOC(guarded routes), Hook(using fetch), Error Boundary which fetches to server, deployed on Heroku</p>
+        <p className='about-p'>Are used styled-jsx, Formik, Yup, useReducer, HOC(guarded routes), Hook(using fetch), Error Boundary which fetches to server, moking and test with msv server, deployed on Heroku</p>
         <strong>Note: this is a free to use project!</strong>
         <p className='about-p'>Enjoy it!</p>
         <style jsx>{`
