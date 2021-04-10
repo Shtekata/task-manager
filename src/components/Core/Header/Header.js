@@ -35,7 +35,7 @@ const Header = () => {
               ? <NavLogout />
               : <NavLogin />
             }
-            <div class="image">
+            <div className="image">
               {state.user ? state.photoUrl ?
                 <Link to={`/auth/profile/${state.userId}`}><img src={state.photoUrl} alt="no picture" /></Link>
                 : <Link to={`/auth/profile/${state.userId}`}><img src={profilePicture} alt="no picture" /></Link>

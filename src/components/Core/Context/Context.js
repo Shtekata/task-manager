@@ -31,6 +31,8 @@ export const Provider = props => {
         if (localUserEmail !== 'undefined') dispatch({ type: 'email', payload: localUserEmail });
         const localUserId = localStorage.getItem('userId');
         if (localUserId !== 'undefined') dispatch({ type: 'userId', payload: localUserId });
+         const localUserPhotoUrl = localStorage.getItem('photoUrl');
+        if (localUserId !== 'undefined') dispatch({ type: 'photoUrl', payload: localUserPhotoUrl });
     }, []);
 
     return (

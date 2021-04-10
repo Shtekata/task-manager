@@ -14,6 +14,8 @@ const errorHandler = (x) => {
         else localStorage.removeItem('userId');
         if (x.email) { returnErr.email = x.email; localStorage.setItem('email', x.email) }
         else localStorage.removeItem('email');
+        if (x.photoUrl) { returnErr.photoUrl = x.photoUrl; localStorage.setItem('photoUrl', x.photoUrl) }
+        else localStorage.removeItem('email');
         throw returnErr;
     };
     return x;
@@ -49,6 +51,7 @@ const login = (x) => fetch(`${REACT_APP_API_URL}/auth/login/`, {
         if (x.username !== undefined) { localStorage.setItem('username', x.username) };
         if (x.userId !== undefined) { localStorage.setItem('userId', x.userId) };
         if (x.email !== undefined) { localStorage.setItem('email', x.email) };
+        if (x.photoUrl !== undefined) { localStorage.setItem('photoUrl', x.photoUrl) };
         return x
     })
     .then(x => errorHandler(x));;
