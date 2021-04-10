@@ -4,6 +4,7 @@ import { Context } from '../Context';
 import Notification from '../../Shared/Notification';
 import NavLogin from './NavLogin';
 import NavLogout from './NavLogout';
+import profilePicture from '../../../img/profile.png';
 
 const Header = () => {
 
@@ -34,6 +35,11 @@ const Header = () => {
               ? <NavLogout />
               : <NavLogin />
             }
+            <div class="image">
+              {state.photoUrl ?
+                <Link to={`/auth/profile/${state.userId}`}><img src={state.photoUrl} alt="no picture" /></Link>
+                : <Link to={`/auth/profile/${state.userId}`}><img src={profilePicture} alt="no picture" /></Link>}
+            </div>
           </div>
         </div>
       </nav>
@@ -91,6 +97,16 @@ const Header = () => {
         display: flex;
         align-items: center;
         color: gold;
+      }
+      .image {
+        width: 53px;
+        display: flex;
+        align-items: center;
+        margin-right: 1.5rem;
+      }
+      img {
+        width: 100%;
+        border-radius: 50%;
       }
       @media (min-width: 989px) {
          .header-central {

@@ -10,6 +10,11 @@ export const Provider = props => {
         switch (action.type) {
             case 'user': return { ...state, user: state.user = action.payload };
             case 'userId': return { ...state, userId: state.userId = action.payload };
+            case 'email': return { ...state, email: state.email = action.payload };
+            case 'alternateEmail': return { ...state, alternateEmail: state.alternateEmail = action.payload };
+            case 'photoUrl': return { ...state, photoUrl: state.photoUrl = action.payload };
+            case 'phoneNumber': return { ...state, phoneNumber: state.phoneNumber = action.payload };
+            case 'address': return { ...state, address: state.address = action.payload };
             case 'err': return { ...state, err: state.err = action.payload };
             case 'info': return { ...state, info: state.info = action.payload };
             case 'time': return { ...state, time: state.time = action.payload };

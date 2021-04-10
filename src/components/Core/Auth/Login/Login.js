@@ -30,7 +30,9 @@ const Login = () => {
                     e.target.reset();
                     dispatch({ type: 'user', payload: x.username });
                     dispatch({ type: 'userId', payload: x.userId });
+                    dispatch({ type: 'email', payload: x.email });
                     dispatch({ type: 'info', payload: x.message });
+                    dispatch({ type: 'photoUrl', payload: x.photoUrl });
                     history.push('/');
                 })
                 .catch(x => {
