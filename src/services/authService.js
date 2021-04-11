@@ -62,10 +62,11 @@ const logout = (x) => fetch(`${REACT_APP_API_URL}/auth/logout`, {
 })
     .then(x => x.json())
     .then(x => {
-        localStorage.removeItem('username');
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
         localStorage.removeItem('userId');
         localStorage.removeItem('email');
+        localStorage.removeItem('photoUrl');
         return x
     })
     .then(x => errorHandler(x));

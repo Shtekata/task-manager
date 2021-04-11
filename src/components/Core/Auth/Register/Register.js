@@ -53,8 +53,9 @@ const Register = () => {
             })
                 .then(x => {
                     e.target.reset();
-                    dispatch({ type: 'user', payload: x.username });
+                   dispatch({ type: 'user', payload: x.username });
                     dispatch({ type: 'userId', payload: x.userId });
+                    dispatch({ type: 'email', payload: x.email });
                     dispatch({ type: 'info', payload: x.message });
                     history.push('/')
                 })

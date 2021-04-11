@@ -13,13 +13,14 @@ const NavLogout = () => {
         authService.logout()
             .then(x => {
                 dispatch({ type: 'user', payload: null });
-                dispatch({ type: 'photoUrl', payload: null });
+                dispatch({ type: 'userId', payload: '' });
+                dispatch({ type: 'email', payload: '' });
+                dispatch({ type: 'photoUrl', payload: '' });
                 dispatch({ type: 'info', payload: x.message });
                 history.push('/')
             })
             .catch(x => {
                 dispatch({ type: 'err', payload: x.message });
-                dispatch({ type: 'user', payload: null });
                 history.push('/')
             });
     }

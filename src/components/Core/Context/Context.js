@@ -4,7 +4,19 @@ export const Context = createContext();
 
 export const Provider = props => {
 
-    const initialState = { user: null, userId: null, err: null, isLoad: null, info: null, time: 2000, };
+    const initialState = {
+        user: null,
+        userId: '',
+        email: '',
+        alternateEmail: '',
+        photoUrl: '',
+        phoneNumber: '',
+        address: '',
+        err: null,
+        isLoad: null,
+        info: null,
+        time: 2000,
+    };
 
     const reducer = (state, action) => {
         switch (action.type) {
