@@ -28,7 +28,6 @@ const useFetch = ({ initialValue, render }) => {
                 dispatch({ type: 'isLoad', payload: false });
             })
             .catch(x => {
-                !x.username ? dispatch({ type: 'user', payload: null }) : dispatch({ type: 'user', payload: x.username });
                 dispatch({ type: 'err', payload: x.message });
             });
     }, [render, state.user]);
