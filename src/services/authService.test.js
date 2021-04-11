@@ -10,7 +10,6 @@ describe('Auth Service', () => {
 
             authService.getUser()
                 .then(x => {
-                    console.log(x);
                     expect(x.user.username.length).toEqual(5);
                     done();
                 });
