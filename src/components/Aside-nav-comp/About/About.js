@@ -1,6 +1,14 @@
+import { css } from "@emotion/react";
+
 const About = () => (
     <div className='about'>
-        <h1 className='about-h1'>This is Kanban Management System</h1>
+        <h1 css={css`
+            text-align: center;
+            color: #234465;
+            text-decoration: underline;
+            margin: 2rem 1rem 2rem 1rem;
+            font-size: 2.7rem;
+        `}>This is Kanban Management System</h1>
         <h2 className='about-h2'>Here are some details about working with the application and its functionalities:</h2>
         <h3 className='about-h3'>Available Actions Guest Users:</h3>
         <h4 className='about-h4'>In the project, you can:</h4>
@@ -30,13 +38,6 @@ const About = () => (
         <strong>Note: this is a free to use project!</strong>
         <p className='about-p'>Enjoy it!</p>
         <style jsx>{`
-        .about-h1 {
-            text-align: center;
-            color: #234465;
-            text-decoration: underline;
-            margin: 2rem 1rem 2rem 1rem;
-            font-size: 2.7rem;
-        }
         .about-h2 {
             margin: 2rem 1rem 2rem 1rem;
             font-size: 1.9rem;
