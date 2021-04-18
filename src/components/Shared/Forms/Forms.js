@@ -50,4 +50,35 @@ const LoginForm = props => (
     </form>
   </section>
 )
-export {LoginForm}
+
+const RegisterForm = props => (
+  <section
+    css={css`
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `}>
+    <form css={[allCss, formCss]} onSubmit={props.onSubmitHandler}>
+      <fieldset css={[allCss, fieldsetLegendCss, fieldsetCss]}>
+        <legend css={[allCss, fieldsetLegendCss, legendCss]}>{props.legend}</legend>
+        <FormInput label='Username' name='username' type='text' placeholder='Username' icon='fas fa-user' />
+        <Message msg={props.usernameMsg} />
+        <FormInput label='Email' name='email' type='text' placeholder='Email' icon='fas fa-user' />
+        <Message msg={props.userEmailMsg} />
+        <FormInput label='Password' name='password' type='password' placeholder='Password' icon='fas fa-key' />
+        <Message msg={props.userPassMsg} />
+        <FormInput
+          label='Repeat Password'
+          name='rePassword'
+          type='password'
+          placeholder='Repeat password'
+          icon='fas fa-key'
+        />
+        <Message msg={props.userRePassMsg} />
+        <FormButtons typeOne='submit' valueOne='Login' typeTwo='button' valueTwo='Back' onClick={props.onClick} />
+      </fieldset>
+    </form>
+  </section>
+)
+export {LoginForm, RegisterForm}

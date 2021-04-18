@@ -1,9 +1,8 @@
 import * as authService from '../../../../services/authService'
 import {useHistory} from 'react-router-dom'
 import {useContext, useState} from 'react'
-import Message from '../../../Errors/Message'
 import {Context} from '../../Context'
-import {FormButton} from '../../../Shared/Buttons'
+import {RegisterForm} from '../../../Shared/Forms/Forms'
 
 const Register = () => {
   const history = useHistory()
@@ -69,144 +68,15 @@ const Register = () => {
   }
 
   return (
-    <section class='register'>
-      <form onSubmit={onSubmitHandler}>
-        <fieldset>
-          <legend>Register</legend>
-          <p className='field'>
-            <label htmlFor='username'>Username</label>
-            <span className='input'>
-              <input type='text' name='username' id='username' placeholder='Username' />
-              <span className='actions'></span>
-              <i className='fas fa-user'></i>
-            </span>
-          </p>
-          <Message msg={usernameMsg} />
-          <p className='field'>
-            <label htmlFor='email'>Email</label>
-            <span className='input'>
-              <input type='text' name='email' id='email' placeholder='Email' />
-              <span className='actions'></span>
-              <i className='fas fa-user'></i>
-            </span>
-          </p>
-          <Message msg={userEmailMsg} />
-          <p className='field'>
-            <label htmlFor='password'>Password</label>
-            <span className='input'>
-              <input type='password' name='password' id='password' placeholder='Password' />
-              <span className='actions'></span>
-              <i className='fas fa-key'></i>
-            </span>
-          </p>
-          <Message msg={userPassMsg} />
-          <p className='field'>
-            <label htmlFor='rePassword'>Repeat Password</label>
-            <span className='input'>
-              <input type='password' name='rePassword' id='rePassword' placeholder='Repeat password' />
-              <span className='actions'></span>
-              <i className='fas fa-key'></i>
-            </span>
-          </p>
-          <Message msg={userRePassMsg} />
-          <div className='buttons'>
-            <FormButton type='submit' value='Register' />
-            <FormButton type='button' value='Back' onClick={() => history.push('/')} />
-          </div>
-        </fieldset>
-      </form>
-      <style jsx>{`
-        .register {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        form {
-          max-width: 30rem;
-          flex-grow: 1;
-        }
-        form,
-        form fieldset,
-        form legend,
-        form label,
-        form input {
-          display: block;
-        }
-        form fieldset,
-        form legend {
-          border: 1px solid #666;
-          background: #f9f9f9;
-          border-radius: 0.3rem;
-          box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.1);
-        }
-        form fieldset {
-          padding: 2.5em 2em 2em 2em;
-          position: relative;
-        }
-        form legend {
-          width: 30%;
-          padding: 0.5rem 1rem;
-          left: -1px;
-          top: -1.4rem;
-          position: absolute;
-        }
-        form label {
-          font-weight: bold;
-          margin: 0.5rem;
-        }
-        .field .input {
-          display: flex;
-          position: relative;
-          align-items: center;
-        }
-        .field .input:after {
-          display: block;
-          content: '';
-        }
-        .field .input input {
-          border: none;
-          flex: 1 1 auto;
-          padding: 0.8rem;
-          outline: none;
-          background: transparent;
-          z-index: 2;
-          order: 2;
-        }
-        .field .input .fas {
-          z-index: 2;
-          position: relative;
-          padding: 0 0 0 0.8rem;
-          font-size: 0.9em;
-          order: 1;
-        }
-        .field .input input + .actions {
-          display: block;
-          background: #fff;
-          border: 1px solid #ccc;
-          border-radius: 0.3rem;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: 1;
-        }
-        .field .input input:focus + .actions {
-          border-color: #090;
-        }
-        .field .input input:focus + .actions + .fas {
-          color: #090;
-        }
-        .err-msg {
-          margin-top: 15px;
-        }
-        .buttons {
-          display: flex;
-          justify-content: space-around;
-        }
-      `}</style>
-    </section>
+    <RegisterForm
+      legend='Register'
+      usernameMsg={usernameMsg}
+      userEmailMsg={userEmailMsg}
+      userPassMsg={userPassMsg}
+      userRePassMsg={userRePassMsg}
+      onClick={() => history.push('/')}
+      onSubmitHandler={onSubmitHandler}
+    />
   )
 }
 export default Register
