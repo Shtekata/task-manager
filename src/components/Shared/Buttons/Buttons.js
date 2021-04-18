@@ -1,5 +1,27 @@
 import {css} from '@emotion/react'
 
+const NavButton = props => (
+  <div
+    css={css`
+      color: maroon;
+      text-align: center;
+      outline: none;
+      margin: 0 30px;
+      padding: 12px 15px;
+      border-bottom: 3px solid maroon;
+      border-radius: 50px;
+      background-color: darkorange;
+      &:hover {
+        cursor: pointer;
+        border-bottom: none;
+        border-top: 3px solid maroon;
+        font-weight: bold;
+      }
+    `}>
+    {props.name}
+  </div>
+)
+
 const FormButton = props => (
   <input
     type={props.type}
@@ -32,4 +54,4 @@ const FormButtons = props => (
   </div>
 )
 
-export {FormButton, FormButtons}
+export {NavButton, FormButton, FormButtons}
