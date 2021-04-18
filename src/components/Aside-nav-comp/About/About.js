@@ -54,8 +54,8 @@ const About = () => (
     <P>In 'Old Tasks' view are all successfully finished tasks, with solution, executor and execution time.</P>
     <P>This app have responsive design and can be use with mobile phone.</P>
     <P>
-      Are used styled-jsx, Formik, Yup, useReducer, HOC(guarded routes), Hook(using fetch), Error Boundary which fetches
-      to server, moking and test with msv server, deployed on Heroku
+      Are used Emotion, Formik, Yup, useReducer, HOC(guarded routes), Hook(using fetch), Error Boundary which fetches to
+      server, moking and test with msv server, deployed on Heroku
     </P>
     <strong>Note: this is a free to use project!</strong>
     <P>Enjoy it!</P>
