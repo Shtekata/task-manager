@@ -26,7 +26,7 @@ const P = styled.p`
 `
 
 const About = () => (
-  <div className='about'>
+  <div>
     <H1>This is Kanban Management System</H1>
     <H2>Here are some details about working with the application and its functionalities:</H2>
     <H3>Available Actions Guest Users:</H3>
