@@ -74,11 +74,6 @@ const Notification = ({msg, type}) => {
           {msg}
         </NotificationSpan>
       </NotificationDiv>
-      <style>{`
-            .hidden{
-                display: none;
-            }
-        `}</style>
     </div>
   )
 }
