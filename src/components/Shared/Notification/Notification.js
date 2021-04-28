@@ -1,43 +1,45 @@
-import { useEffect, useState } from "react";
+import {css} from '@emotion/react'
+import styled from '@emotion/styled'
+import {useEffect, useState} from 'react'
 
-const Notification = ({ msg, type }) => {
-    const [classesL, setClassesL] = useState('notification hidden');
-    const [classesI, setClassesI] = useState('notification hidden');
-    const [classesE, setClassesE] = useState('notification hidden');
+const Notification = ({msg, type}) => {
+  const [classesL, setClassesL] = useState('hidden')
+  const [classesI, setClassesI] = useState('hidden')
+  const [classesE, setClassesE] = useState('hidden')
 
-    useEffect(() => {
-        type === 'l' ? setClassesL('notification') : setClassesL('notification hidden');
-        if (msg) {
-            if (type === 'i') setClassesI('notification');
-            if (type === 'e') setClassesE('notification');
-        } else {
-            setClassesI('notification hidden');
-            setClassesE('notification hidden');
-        }
-    }, [msg, type]);
+  const NotificationDiv = styled.div`
+    color: #ffffff;
+  `
+  useEffect(() => {
+    type === 'l' ? setClassesL('') : setClassesL('hidden')
+    if (msg) {
+      if (type === 'i') setClassesI('')
+      if (type === 'e') setClassesE('')
+    } else {
+      setClassesI('hidden')
+      setClassesE('hidden')
+    }
+  }, [msg, type])
 
-    return (
-        <div id="notifications">
-            <div id="loadingBox" className={classesL}>
-                <span>Loading …</span>
-            </div>
-            <div id="infoBox" className={classesI}>
-                <span>{msg}</span>
-            </div>
-            <div id="errorBox" className={classesE}>
-                <span>{msg}</span>
-            </div>
-            <style jsx>{`
+  return (
+    <div
+      css={css`
+        opacity: 0.9;
+      `}>
+      <NotificationDiv id='loadingBox' className={classesL}>
+        <span>Loading …</span>
+      </NotificationDiv>
+      <NotificationDiv id='infoBox' className={classesI}>
+        <span>{msg}</span>
+      </NotificationDiv>
+      <NotificationDiv id='errorBox' className={classesE}>
+        <span>{msg}</span>
+      </NotificationDiv>
+      <style>{`
             .hidden{
                 display: none;
             }
-            #notifications {
-                opacity: 0.9;
-            }
-            .notification {
-                color: #ffffff;
-            }
-            .notification>span {
+            span {
                padding: 0.3em 1em 0.3em 1em;
                border-radius: 10px;
                font-size: 16px;
@@ -71,8 +73,8 @@ const Notification = ({ msg, type }) => {
                 box-shadow: 0px 0px 11px 8px rgba(133, 180, 231, 0.5)
             }
         `}</style>
-        </div>
-    )
-};
+    </div>
+  )
+}
 
-export default Notification;
+export default Notification
